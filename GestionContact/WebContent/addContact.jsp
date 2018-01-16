@@ -8,8 +8,19 @@
 </head>
 <body>
 
+<%@page import="java.util.Set"%>
+<%@page import="java.util.HashSet"%>
+
+<%
+    Set<String> groupes = new HashSet<String>();
+%>
+ 
  <form method="post" action="NewContact">
   <div class="container">
+ 
+  	<label><b>Numero Siret</b></label>
+    <input type="text" placeholder="Enter numero siret" name="numSiret" required/>
+    <br>
     <label><b>Fist Name</b></label>
     <input type="text" placeholder="Enter first name" name="firstName" required/>
     <br>
@@ -76,13 +87,38 @@
          
     </fieldset> 
 
-
- 
-    <input type="submit" value="submit"/>     
-    <input type="reset" value="reset"/> 
+	<fieldset>
+    	<legend>Groupes</legend>
+    	
+		<select id='groupesSelect' name='groupes' multiple='multiple'
+			style='width: 100%'>
+			<option value='Amis'>Amis</option>
+			<option value='Collegues'>Collegues</option>
+			<option value='Famille'>Famille</option>
+			<%
+			for (String nomDeGroupe : groupes) {
+			%>    
+			<option value='<%=nomDeGroupe%>'><%=nomDeGroupe%></option>
+			<%  
+			}
+			%>
+		</select>
+			
+		<script type='text/javascript'>
+			$('#groupesSelect').select2({
+				/**/
+				tags : true,
+				tokenSeparators : [ ',', ' ', ':',
+						';', '\\', '/' ],
+				placeholder : 'Entrer des groupes associés au contact'
+			});
+		</script>
+    </fieldset>
+    
+    <input type="submit" value="Ajouter le contact"/>     
+    <input type="reset" value="Annuler"/> 
    </div>
   </form> 
-
-
+ 
 </body>
 </html>

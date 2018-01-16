@@ -8,7 +8,7 @@
     <description></description>
     <display-name>ContactServlet</display-name>
     <servlet-name>ContactServlet</servlet-name>
-    <servlet-class>servlets.ContactServlet</servlet-class>
+    <servlet-class>Servlets.ContactServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
@@ -19,7 +19,7 @@
     <description></description>
     <display-name>NewContact</display-name>
     <servlet-name>NewContact</servlet-name>
-    <servlet-class>servlets.NewContact</servlet-class>
+    <servlet-class>Servlets.NewContact</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>NewContact</servlet-name>
@@ -29,7 +29,7 @@
     <description></description>
     <display-name>DeleteContact</display-name>
     <servlet-name>DeleteContact</servlet-name>
-    <servlet-class>servlets.DeleteContact</servlet-class>
+    <servlet-class>Servlets.DeleteContact</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DeleteContact</servlet-name>
@@ -40,7 +40,7 @@
     <description></description>
     <display-name>SearchContact</display-name>
     <servlet-name>SearchContact</servlet-name>
-    <servlet-class>servlets.SearchContact</servlet-class>
+    <servlet-class>Servlets.SearchContact</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>SearchContact</servlet-name>
@@ -50,7 +50,7 @@
     <description></description>
     <display-name>UpdateContact</display-name>
     <servlet-name>UpdateContact</servlet-name>
-    <servlet-class>servlets.UpdateContact</servlet-class>
+    <servlet-class>Servlets.UpdateContact</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UpdateContact</servlet-name>
