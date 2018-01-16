@@ -1,4 +1,4 @@
-package servlets;
+package Servlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.DaoContact;
+import DAO.DaoContact;
 
 /**
  * Servlet implementation class DeleteContact
@@ -40,12 +40,17 @@ public class DeleteContact extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+				
 		try {
 	       
 	        long idContact = Long.parseLong(request.getParameter("idContact"));
 	        
 	        DaoContact dao = new DaoContact();
 	        dao.deleteContact(idContact);
+	       
+	        response.sendRedirect("accueil.jsp");
+	            
+	     
 		} catch (Exception e) {
 			System.out.println(e);
 		}

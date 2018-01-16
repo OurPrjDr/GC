@@ -7,12 +7,25 @@
     </head>
     <body>
         <form method="post" action="UpdateContact">
-            id: <input type="text" name="id"/><br>
-            nouveau prenom: <input type="text" name="nouvPrenom"/><br>
-            nouveau nom: <input type="text" name="nouvNom"/><br>
-            nouveau email: <input type="text" name="nouvEmail"/><br>        
-            <input type="submit" value="Submit"/>
-            <input type="reset" value="Reset"/>
+        	Id du contact à modifier: <input type="text" name="idContact" /><br /> 
+            Num Siret: <input type="text" name="numSiret" /><br /> 
+            FirstName: <input type="text" name="prenom" /><br /> 
+            LastName: <input type="text" name="nom" /><br /> 
+            Email: <input type="text" name="email" /><br />
+			Street: <input type="text" name="rue" /><br /> 
+			City: <input type="text" name="ville" /><br /> 
+			Zip: <input type="text" name="code" /><br /> 
+			Country: <input type="text" name="pays" /><br /> 
+			Mobile Phone: <input type="text" name="telMobile"><br /> 
+			House Phone: <input type="text" name="telMaison" /><br /> 
+			Office Phone: <input type="text" name="telBureau" /><br /> 
+			Friends: <input type="checkbox" name="amis" value="amis" />Amis<br /> 
+			Colleagues: <input type="checkbox" name="collegues" value="collegues" />Collegues<br />
+			Family: <input type="checkbox" name="famille" value="famille" />Famille<br />
+			<input type="button" name="New group" value="nouveauGroupe" /><br />
+		      
+            <input type="submit" value="Mettre-a-jour le contact"/>
+            <input type="reset" value="Annuler"/>
         </form>
     </body>
 </html>

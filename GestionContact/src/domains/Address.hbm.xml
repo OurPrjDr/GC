@@ -1,11 +1,19 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="domains">
-  <class name="Address" table="address">
-  	 <id name="idAdress" type="long" column="idAdress" >
-   		<generator class="increment"/>
+<hibernate-mapping package="Domains">
+  <class name="Address" table="address_table" optimistic-lock="version">
+  	 <id name="idAdress" type="long" column="ID_CONTACT" >
+  	 	<!-- <generator class="foreign">
+			<param name="property">contact</param>
+		</generator>-->
+		<generator class="increment"/>
   	 </id>
+  	 
+  	 <version name="version" type="long" />
+  	 
+  	<!-- <one-to-one name="contact" class="Contact"/>-->
+  	 		
 	 <property name="street" type="string">
             <column name="street"  not-null="true" unique="false" />
     </property>

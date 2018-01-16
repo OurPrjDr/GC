@@ -1,4 +1,4 @@
-package domains;
+package Domains;
 
 import java.util.List;
 
@@ -7,7 +7,17 @@ public class ContactGroup {
 	private String groupName;
 	private List<Contact> contacts;
 
+	private long version;
 	
+	public long getVersion() {
+		return version;
+	}
+
+	public void setVersion(long version) {
+		this.version = version;
+	}
+
+
 	public ContactGroup() {
 		super();
 		// TODO Auto-generated constructor stub

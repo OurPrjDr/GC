@@ -14,8 +14,8 @@
     <input type="text" placeholder="Enter Id" name="idContact" required/>
     <br>
 
-    <input type="submit" value="submit"/>     
-    <input type="reset" value="reset"/> 
+    <input type="submit" value="Supprimer le contact"/>     
+    <input type="reset" value="Annuler"/> 
    </div>
   </form> 
 

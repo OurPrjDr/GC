@@ -1,4 +1,4 @@
-	package domains;
+package Domains;
 
 import java.util.List;
 import java.util.Set;
@@ -8,9 +8,20 @@ public class Contact {
 	private String lastName; 
 	private String email; 
 	private long idContact;
-	private List<ContactGroup> books;
+	private Set<ContactGroup> books;
+
 	private Set<PhoneNumber> phones;
 	private Address address;
+
+	private long version;
+	 
+	public long getVersion() {
+		return version;
+	}
+
+	public void setVersion(long version) {
+		this.version = version;
+	}
 
 	public Contact() {
 		super();
@@ -22,7 +33,6 @@ public class Contact {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.idContact = idContact;
 	}
 
 	public String getFirstName() {
@@ -49,17 +59,7 @@ public class Contact {
 		this.email = email;
 	}
 
- 
-
-	public List<ContactGroup> getBooks() {
-		return books;
-	}
-
-	public void setBooks(List<ContactGroup> books) {
-		this.books = books;
-	}
-
- 
+  
 	public Address getAddress() {
 		return address;
 	}
@@ -85,8 +85,12 @@ public class Contact {
 		this.phones = phones;
 	}
 
- 
- 
-	
+	public Set<ContactGroup> getBooks() {
+		return books;
+	}
+
+	public void setBooks(Set<ContactGroup> books) {
+		this.books = books;
+	}
 	
 }

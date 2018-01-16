@@ -1,4 +1,4 @@
-package domains;
+package Domains;
 
 import java.util.List;
 
@@ -7,9 +7,17 @@ public class PhoneNumber {
 	private String phoneKind; 
 	private String phoneNumber;
 	private Contact contact;
-	private List<Contact> contacts;
-
 	
+	private long version;
+	
+	public long getVersion() {
+		return version;
+	}
+
+	public void setVersion(long version) {
+		this.version = version;
+	}
+
 	public PhoneNumber() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -48,14 +56,5 @@ public class PhoneNumber {
 	public void setContact(Contact contact) {
 		this.contact = contact;
 	}
-
-	public List<Contact> getContacts() {
-		return contacts;
-	}
-
-	public void setContacts(List<Contact> contacts) {
-		this.contacts = contacts;
-	}
-	
  
 }

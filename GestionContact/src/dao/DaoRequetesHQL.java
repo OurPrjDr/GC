@@ -1,4 +1,4 @@
-package dao;
+package DAO;
 
 import java.util.HashSet;
 import java.util.List;
@@ -10,12 +10,11 @@ import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-import domains.Address;
-import domains.Contact;
-import domains.ContactGroup;
-import domains.PhoneNumber;
-import util.HibernateUtil;
-
+import Util.HibernateUtil;
+import Domains.Address;
+import Domains.Contact;
+import Domains.ContactGroup;
+import Domains.PhoneNumber;
 
 public class DaoRequetesHQL {
 

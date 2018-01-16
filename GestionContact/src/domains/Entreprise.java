@@ -1,6 +1,6 @@
-package domains;
+package Domains;
 
-public class Entreprise {
+public class Entreprise extends Contact {
 	private long numSiret;
 
 	
@@ -9,11 +9,12 @@ public class Entreprise {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Entreprise(long numSiret) {
-		super();
-		this.numSiret = numSiret;
-	}
-
+	public Entreprise(String firstName, String lastname, String email,
+            long numSiret) {
+        super(firstName, lastname, email);
+        this.numSiret = numSiret;
+    }
+    
 	public long getNumSiret() {
 		return numSiret;
 	}
