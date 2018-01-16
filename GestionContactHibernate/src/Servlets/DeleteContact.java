@@ -47,6 +47,10 @@ public class DeleteContact extends HttpServlet {
 	        
 	        DaoContact dao = new DaoContact();
 	        dao.deleteContact(idContact);
+	       
+	        response.sendRedirect("accueil.jsp");
+	            
+	     
 		} catch (Exception e) {
 			System.out.println(e);
 		}

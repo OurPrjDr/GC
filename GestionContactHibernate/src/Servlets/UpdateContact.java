@@ -70,6 +70,7 @@ public class UpdateContact extends HttpServlet {
         DaoContact dao = new DaoContact();
         dao.updateContact(id, firstName, lastName, email, adr, tels,
                 cgroupe, nsiret);
+        response.sendRedirect("accueil.jsp");
     }
 
 }

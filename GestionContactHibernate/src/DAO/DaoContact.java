@@ -1,12 +1,19 @@
 package DAO;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.CriteriaSpecification;
+import org.hibernate.transform.Transformers;
+
+import com.sun.javafx.collections.MappingChange.Map;
 
 import Domains.Address;
 import Domains.Contact;
@@ -22,7 +29,7 @@ public class DaoContact {
 	private String password = "root";
 	Statement st;*/
 
-	Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+	Session session = HibernateUtil.getSessionFactory().openSession();
 	Set<Contact> sc = new HashSet<Contact>();
 
 	//Session session = HibernateUtil.getSessionFactory().openSession();
@@ -90,19 +97,28 @@ public class DaoContact {
 	
 	public Set<Contact> getAllContacts() {
 			
-		Transaction transaction = session.beginTransaction(); 
-		Query q = session.createQuery("from Contact"); 
-	
-		q.setFirstResult(50);
-		q.setMaxResults(100);
-		List<Contact> lc = q.list();
-		
-		transaction.commit();
-		
-		sc.addAll(lc);
-		System.out.println("TAILLE:"+sc.size());
-		
-		return sc;
+		   //session = HibernateUtil.getSessionFactory().openSession();
+	      	try{Transaction tx = null;
+	      
+	         tx = session.beginTransaction();
+	        
+	         Query query = session.createQuery("from Contact");
+	         //query.addScalar("id", Hibernate.INT).setResultTransformer(Transformers.aliasToBean(Contact.class));
+	        // query.setResultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP);
+	         List<Contact> data = query.list();
+	         sc.addAll(data);
+	      
+	         tx.commit();
+	      	} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+	         finally {
+	 			session.clear();
+
+	 		}
+		        
+	         return sc;
 	}
 	
 	public void deleteContact(long idContact) {
@@ -168,6 +184,29 @@ public class DaoContact {
 
     }
 
+     public Contact searchParId(long idContact){
+    	 Contact c = new Contact();
+    	 try {
+ 			Transaction transaction = session.beginTransaction(); 
+
+   			c = (Contact)session.get(Contact.class, idContact); 
+   			
+  			transaction.commit();			
+  			//System.out.println("das"+c.getFirstName());
+  			
+  			//st = this.newConnection().createStatement();
+ 			//st.executeUpdate("DELETE FROM contact WHERE idContact=" + idContact);
+ 		    //st.close();
+ 	
+ 		} catch (Exception e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 		} finally {
+ 			session.clear();
+
+ 		}
+    	 return c;
+     }
  
      public Set<Contact> searchContact(String firstName, String lastName, String email, Address address, Set<PhoneNumber> phones, Set<ContactGroup> groups, 
  			String numSiret) {

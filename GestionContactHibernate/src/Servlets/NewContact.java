@@ -105,13 +105,7 @@ public class NewContact extends HttpServlet {
 	        
 	        response.setContentType( "text/html" );
 	        out.println( "<html><body>" );
-	        try {
-	                          
-	        	response.sendRedirect("accueil.jsp");
-	            
-	        } catch (Exception e) {
-	                 
-	        }
+	        response.sendRedirect("accueil.jsp");
 	        out.println("</body></html>"); 
 
 		} catch (Exception e) {

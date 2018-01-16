@@ -1,17 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="DAO.DaoContact,Domains.Contact"%>  
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
         <title>Mise-a-jour Contact</title>
     </head>
+    <%
+    	Long idContact = Long.parseLong(request.getParameter("idContact"));
+    	DaoContact dao = new DaoContact();
+		Contact contact = dao.searchParId(idContact); 
+    %>
     <body>
         <form method="post" action="UpdateContact">
         	Id du contact à modifier: <input type="text" name="idContact" /><br /> 
             Num Siret: <input type="text" name="numSiret" /><br /> 
-            FirstName: <input type="text" name="prenom" /><br /> 
-            LastName: <input type="text" name="nom" /><br /> 
-            Email: <input type="text" name="email" /><br />
+            FirstName: <input type="text" name="prenom" value=<%=contact.getFirstName() %> /><br /> 
+            LastName: <input type="text" name="nom" value=<%=contact.getLastName() %> /><br /> 
+            Email: <input type="text" name="email" value=<%=contact.getEmail() %> /><br />
 			Street: <input type="text" name="rue" /><br /> 
 			City: <input type="text" name="ville" /><br /> 
 			Zip: <input type="text" name="code" /><br /> 
