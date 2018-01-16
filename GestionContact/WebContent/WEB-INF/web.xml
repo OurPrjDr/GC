@@ -10,6 +10,7 @@
     <servlet-name>ContactServlet</servlet-name>
     <servlet-class>servlets.ContactServlet</servlet-class>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>ContactServlet</servlet-name>
     <url-pattern>/ContactServlet</url-pattern>

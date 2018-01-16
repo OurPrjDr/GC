@@ -6,7 +6,6 @@ public class Address {
 	private String city; 
 	private String zip; 
 	private String country; 
- 	private Contact contact; 
  	
 	public Address() {
 		super();
@@ -62,13 +61,7 @@ public class Address {
 		this.country = country;
 	}
 
-	public Contact getContact() {
-		return contact;
-	}
-
-	public void setContact(Contact contact) {
-		this.contact = contact;
-	}
+ 
 	
 
 	

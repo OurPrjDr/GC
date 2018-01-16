@@ -72,7 +72,6 @@ public class NewContact extends HttpServlet {
 	        
 		} catch (Exception e) {
 			System.out.println(e);
-			System.out.println("NewContact doPost");
 		}
  
 	}

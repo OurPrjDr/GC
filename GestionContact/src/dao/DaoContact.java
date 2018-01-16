@@ -1,7 +1,10 @@
 package dao;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -73,16 +76,37 @@ public class DaoContact {
 
 		
 	}
+	
+	public List<Contact> getAllContacts() {
+		  Transaction transaction = session.beginTransaction(); 
+
+		 Query qry = session.createQuery("from contact p");
+		 
+		 List l =qry.list();
+		 System.out.println("Total Number Of Records : "+l.size());
+		 Iterator it = l.iterator();
+		 
+		 while(it.hasNext())
+		 {
+			 Object o = (Object)it.next();
+			 Contact p = (Contact)o;
+			 
+			 System.out.println("Product id : "+p.getIdContact());
+			 System.out.println("  Name : "+p.getFirstName());
+			 System.out.println("lasr  : "+p.getLastName());
+			 System.out.println("----------------------");
+		 }
+		return l; 
+		 
 		
+	}
 	public void deleteContact(long idContact) {
 		
 		try {
 			Transaction transaction = session.beginTransaction(); 
 
-  			Contact c = (Contact)session.load(Contact.class, idContact); 
-			 		
-  			System.out.println(c.getFirstName());
-			session.delete(c); 
+  			Contact c = (Contact)session.load(Contact.class, idContact); 			 		
+ 			session.delete(c); 
  			transaction.commit();			
  
  			
