@@ -22,14 +22,14 @@
     </property>
         
 	<many-to-one class="Address" name="address" column="ID_ADDRESS" 
-			unique="true" lazy="false" cascade="persist"/>
+			unique="true" cascade="persist"/>
 
 	<set name="books" table="possedent" cascade="all" inverse="true" >
 		<key column="ID_CONTACT" />
 		<many-to-many class="ContactGroup" column="ID_CONTACTGROUP" />
 	</set>
 
-	<set name="phones"  table="phonenumber_table" cascade="save-update"  lazy="false" >
+	<set name="phones"  table="phonenumber_table" cascade="save-update">
 		<key column="ID_CONTACT" />
 		<one-to-many class="PhoneNumber" />
 	</set>

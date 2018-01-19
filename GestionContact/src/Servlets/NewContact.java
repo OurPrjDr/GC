@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.DaoContact;
+import DAO.DAOContact;
 import Domains.Address;
 import Domains.ContactGroup;
 import Domains.PhoneNumber;
@@ -97,7 +97,7 @@ public class NewContact extends HttpServlet {
 	            }
 	        }
 	        
-	        DaoContact dao = new DaoContact();
+	        DAOContact dao = new DAOContact();
 	        
 	        System.out.println("---->>"+phones.size());
 	        

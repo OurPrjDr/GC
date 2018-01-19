@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.DaoContact;
+import DAO.DAOContact;
 import Domains.Address;
 import Domains.ContactGroup;
 import Domains.PhoneNumber;
@@ -67,7 +67,7 @@ public class UpdateContact extends HttpServlet {
             id = Long.parseLong(idC);
         } catch (Exception e) {}
         
-        DaoContact dao = new DaoContact();
+        DAOContact dao = new DAOContact();
         dao.updateContact(id, firstName, lastName, email, adr, tels,
                 cgroupe, nsiret);
         response.sendRedirect("accueil.jsp");

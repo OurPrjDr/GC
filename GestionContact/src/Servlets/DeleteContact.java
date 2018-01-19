@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.DaoContact;
+import DAO.DAOContact;
 
 /**
  * Servlet implementation class DeleteContact
@@ -45,7 +45,7 @@ public class DeleteContact extends HttpServlet {
 	       
 	        long idContact = Long.parseLong(request.getParameter("idContact"));
 	        
-	        DaoContact dao = new DaoContact();
+	        DAOContact dao = new DAOContact();
 	        dao.deleteContact(idContact);
 	       
 	        response.sendRedirect("accueil.jsp");

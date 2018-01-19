@@ -1,6 +1,5 @@
 package Domains;
 
-import java.util.List;
 import java.util.Set;
 
 public class Contact {
@@ -25,7 +24,6 @@ public class Contact {
 
 	public Contact() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Contact(String firstName, String lastName, String email) {

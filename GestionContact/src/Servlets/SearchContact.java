@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.DaoContact;
+import DAO.DAOContact;
 import DAO.DaoRequetesHQL;
 import Domains.Address;
 import Domains.Contact;
@@ -70,7 +70,7 @@ public class SearchContact extends HttpServlet {
 
           if (typeSearch.compareTo("Simple") == 0) {
               /* Recherche simple */
-              DaoContact dao = new DaoContact();
+              DAOContact dao = new DAOContact();
               res = dao.searchContact(firstName, lastName, email, adr, tels,
                       cgroupe, numSiret);
           } else if (typeSearch.compareTo("Param") == 0) {

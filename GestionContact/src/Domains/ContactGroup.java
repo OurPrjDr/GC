@@ -20,7 +20,6 @@ public class ContactGroup {
 
 	public ContactGroup() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 

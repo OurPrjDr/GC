@@ -1,19 +1,12 @@
 package DAO;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.hibernate.Hibernate;
 import org.hibernate.Query;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.CriteriaSpecification;
-import org.hibernate.transform.Transformers;
-
-import com.sun.javafx.collections.MappingChange.Map;
 
 import Domains.Address;
 import Domains.Contact;
@@ -22,7 +15,7 @@ import Domains.Entreprise;
 import Domains.PhoneNumber;
 import Util.HibernateUtil;
 
-public class DaoContact {
+public class DAOContact {
 	
 	/*private String url      = "jdbc:mysql://localhost/bdcontact";
 	private String user     = "root";
@@ -53,9 +46,6 @@ public class DaoContact {
 			long numSiret) throws ClassNotFoundException {
 		
 		Contact c = new Contact(firstName, lastName, email); 
-		
-	
-		
 
 		try { 
  
@@ -80,41 +70,35 @@ public class DaoContact {
 
 		
  		//	st.close();
-
-				
 		} catch (Exception e) {
 			e.printStackTrace();
 		}/*finally {
 			session.clear();
 		}*/
-
-		
 	}
 	
 	public Set<Contact> getAllContacts() {
-			
 		   //session = HibernateUtil.getSessionFactory().openSession();
-	      	try{Transaction tx = null;
+	      	try{
+	      		Transaction tx = null;
 	      
-	         tx = session.beginTransaction();
-	        
-	         Query query = session.createQuery("from Contact");
-	         //query.addScalar("id", Hibernate.INT).setResultTransformer(Transformers.aliasToBean(Contact.class));
-	        // query.setResultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP);
-	         List<Contact> data = query.list();
-	         sc.addAll(data);
-	      
-	         tx.commit();
+	      		tx = session.beginTransaction();
+		        
+	      		Query query = session.createQuery("from Contact");
+		         //query.addScalar("id", Hibernate.INT).setResultTransformer(Transformers.aliasToBean(Contact.class));
+		        // query.setResultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP);
+	      		List<Contact> data = query.list();
+	      		sc.addAll(data);
+		      
+	      		tx.commit();
 	      	} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
 	         finally {
 	 			session.clear();
 
 	 		}
-		        
-	         return sc;
+		    return sc;
 	}
 	
 	public void deleteContact(long idContact) {
@@ -125,22 +109,25 @@ public class DaoContact {
   			Contact c = (Contact)session.load(Contact.class, idContact); 			 		
  			session.delete(c); 
  			transaction.commit();			
- 
  			
  			//st = this.newConnection().createStatement();
 			//st.executeUpdate("DELETE FROM contact WHERE idContact=" + idContact);
 		    //st.close();
-	
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			session.clear();
-
 		}
 		
 	}
+	
+	public void updateContact(Contact c) {
+		session.beginTransaction();
+		session.update(c);
+		session.getTransaction().commit();
+	}
  
+	//TODO: A mettre dans le service
      public void updateContact(long id, String firstName, String lastName, String email, Address address, Set<PhoneNumber> phones, Set<ContactGroup> groups, 
 		long numSiret) { 
          session.beginTransaction();
