@@ -19,7 +19,7 @@
   <div class="container">
  
   	<label><b>Numero Siret</b></label>
-    <input type="text" placeholder="Enter numero siret" name="numSiret" required/>
+    <input type="text" placeholder="Enter numero siret" name="numSiret" />
     <br>
     <label><b>Fist Name</b></label>
     <input type="text" placeholder="Enter first name" name="firstName" required/>

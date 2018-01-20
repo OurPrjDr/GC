@@ -12,13 +12,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import DAO.DaoContact;
 import DAO.DaoRequetesHQL;
+import Domains.Account;
 import Domains.Address;
 import Domains.Contact;
 import Domains.ContactGroup;
 import Domains.Entreprise;
 import Domains.PhoneNumber;
+import Services.ContactService;
 
 public class SearchContact extends HttpServlet {
 
@@ -70,9 +73,10 @@ public class SearchContact extends HttpServlet {
 
           if (typeSearch.compareTo("Simple") == 0) {
               /* Recherche simple */
-              DaoContact dao = new DaoContact();
-              res = dao.searchContact(firstName, lastName, email, adr, tels,
-                      cgroupe, numSiret);
+      		Account account = (Account) request.getSession().getAttribute("account");
+      	     DaoContact daoContact = new DaoContact();
+		     ContactService contactService = new ContactService(daoContact);
+              res = contactService.searchContact(firstName, lastName, email, adr, tels,cgroupe, numSiret,account);
           } else if (typeSearch.compareTo("Param") == 0) {
               /* Recherche avec requetes HQL */
               DaoRequetesHQL daoReq = new DaoRequetesHQL();

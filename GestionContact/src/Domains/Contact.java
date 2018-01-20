@@ -3,6 +3,7 @@ package Domains;
 import java.util.List;
 import java.util.Set;
 
+
 public class Contact {
 	private String firstName; 
 	private String lastName; 
@@ -14,6 +15,7 @@ public class Contact {
 	private Address address;
 
 	private long version;
+	
 	 
 	public long getVersion() {
 		return version;
@@ -92,5 +94,7 @@ public class Contact {
 	public void setBooks(Set<ContactGroup> books) {
 		this.books = books;
 	}
+
+	
 	
 }

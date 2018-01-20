@@ -9,8 +9,7 @@ public class Entreprise extends Contact {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Entreprise(String firstName, String lastname, String email,
-            long numSiret) {
+	public Entreprise(String firstName, String lastname, String email,long numSiret) {
         super(firstName, lastname, email);
         this.numSiret = numSiret;
     }

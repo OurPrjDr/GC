@@ -54,4 +54,14 @@
     <servlet-name>UpdateContact</servlet-name>
     <url-pattern>/UpdateContact</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SignServlet</display-name>
+    <servlet-name>SignServlet</servlet-name>
+    <servlet-class>Servlets.SignServlet</servlet-class>
+  </servlet>
+   <servlet-mapping>
+    <servlet-name>SignServlet</servlet-name>
+    <url-pattern>/SignServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

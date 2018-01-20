@@ -30,7 +30,8 @@
         <property name="hibernate.format_sql">true</property>
         
         <!-- liens vers les fichiers de mapping, indiquez le chemin à partir de src -->
-         <mapping resource="Domains/Contact.hbm.xml"/>
+        <mapping resource="Domains/Account.hbm.xml"/>
+        <mapping resource="Domains/Contact.hbm.xml"/>
         <mapping resource="Domains/Address.hbm.xml"/>
         <mapping resource="Domains/ContactGroup.hbm.xml"/>
         <mapping resource="Domains/PhoneNumber.hbm.xml"/>

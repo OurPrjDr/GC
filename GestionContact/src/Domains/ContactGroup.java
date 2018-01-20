@@ -1,14 +1,16 @@
 package Domains;
 
 import java.util.List;
+import java.util.Set;
 
 public class ContactGroup {
 	private long idContactGroup; 
 	private String groupName;
-	private List<Contact> contacts;
+	private Set<Contact> contacts;
 
 	private long version;
 	
+
 	public long getVersion() {
 		return version;
 	}
@@ -24,7 +26,7 @@ public class ContactGroup {
 	}
 
 
-	public ContactGroup(String groupName, List<Contact> contacts) {
+	public ContactGroup(String groupName, Set<Contact> contacts) {
 		super();
 		this.groupName = groupName;
 		this.contacts = contacts;
@@ -51,12 +53,12 @@ public class ContactGroup {
 	}
 
 
-	public List<Contact> getContacts() {
+	public Set<Contact> getContacts() {
 		return contacts;
 	}
 
 
-	public void setContacts(List<Contact> contacts) {
+	public void setContacts(Set<Contact> contacts) {
 		this.contacts = contacts;
 	}
 
