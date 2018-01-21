@@ -1,6 +1,7 @@
 package Services.interfaces;
 
 import java.util.List;
+import java.util.Set;
 
 import Domains.Account;
 import Domains.Address;
@@ -16,6 +17,6 @@ public interface IEntrepriseService {
 	Entreprise createEntreprise(String firstName, String lastName, String email, Address add, long numSiret);
 
 	Entreprise getEntreprise(long id);
-
-
+	
+	Set<Entreprise> getAllEntreprises();
 }

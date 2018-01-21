@@ -37,25 +37,13 @@ public class DaoPhoneNumber {
 	public void updatePhoneNumber(long id, String phoneKind, String phoneNumber, Contact contact) {
 		
 		
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		System.out.println("phoneNumber"+phoneNumber);
 		Transaction tx = session.getTransaction();
 		if(!tx.isActive()) tx = session.beginTransaction();
-		PhoneNumber phoneNum = (PhoneNumber) session.get(PhoneNumber.class, id);
+		PhoneNumber phoneNum = (PhoneNumber) session.load(PhoneNumber.class, id);
 		phoneNum.setPhoneKind(phoneKind);
 		phoneNum.setPhoneNumber(phoneNumber);
-		
-		/*try {
-			if(phoneKind!=null && !phoneKind.equals("")) phoneNum.setPhoneKind(phoneKind);
-			if(phoneNumber!=null && !phoneNumber.equals("")) phoneNum.setPhoneNumber(phoneNumber);
-			System.out.println("@@@@@@@@@@try");
-		} catch (Exception e){
-			System.out.println("@@@@@@@@@@catch");
-
-			phoneNum = new PhoneNumber();
-			phoneNum.setContact(contact);
-			phoneNum.setPhoneKind(phoneKind);
-			phoneNum.setPhoneNumber(phoneNumber);
-		}*/
 		
 
 		//session.update(phoneNum);

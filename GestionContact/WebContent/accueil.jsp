@@ -1,8 +1,14 @@
 <%@ page language="java" import="java.util.Iterator" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="DAO.DaoContact,Domains.Contact,java.util.List,Services.ContactService,Domains.PhoneNumber"%>  
+<%@page import="DAO.DaoContact,DAO.DaoEntreprise,Domains.Contact,java.util.List,Services.ContactService,Domains.PhoneNumber,Domains.Account"%>  
+<%@page import="Services.EntrepriseService"%>
 <%@page import="java.util.Set"%>
 <%@page import="Domains.Entreprise"%>
+<%@ include file="navbar.jsp" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,23 +16,52 @@
 <title>Insert title here</title>
 </head>
 <body>
- <ul>
-  <li><a href="addContact.jsp">Créer un nouveau contact</a></li>
-  <li><a href="searchContact.jsp">Chercher un contact</a></li>
-  <!-- <li><a href="updateContact.jsp">Editer un contact</a></li>-->
-  <!-- <li><a href="removeContact.jsp">Supprimer contact</a></li>-->
-  
- </ul> 
+ 
+ <ul class="user">
+    			<li>
+    				<%
+    				    String str = null;
+    				    str = (String)request.getAttribute("account");
+    				    Account account = (Account) request.getSession().getAttribute("account");
+    				    
+                        %>
+	     				
+   						<dl>
+   							<dt>
+	    						<a>Bienvenu,<b><font color="red"><%=account.getLogin() %></font></b></a>
+	    						<a href="<%=path %>/Servlets/SignOut"><font color="#CDC9C9">Exit</font></a><!-- 绝对路径 -->
+	    						
+	    						<!-- 
+	    						<a href="lyons/control/HandleExit"><font color="#CDC9C9">退出</font></a><!-- 相对路径 -->
+	    						 -->
+   							</dt>
+   						</dl>
+    			</li>
+    		</ul>
+    		
 </body>
 <%  
 	DaoContact daoContact = new DaoContact();
 	ContactService contactService = new ContactService(daoContact);
 	Set<Contact> contactList = contactService.getAllContacts(); 
-	Iterator it = contactList.iterator();
+	
+	DaoEntreprise daoEntreprise = new DaoEntreprise();
+	EntrepriseService entrepriseService = new EntrepriseService(daoEntreprise);
+	Set<Entreprise> entrepriseList = entrepriseService.getAllEntreprises();
+	
+	Iterator it = null;
+	
+	if(entrepriseList.size()!=0){
+		it = entrepriseList.iterator();
+	}else{
+		it = contactList.iterator();
+	}
 	
 	
 	
-%>  
+	
+
+%>
 <table border="1" cellpadding="5" cellspacing="1" >
        <tr>
        	  <th>Id</th>

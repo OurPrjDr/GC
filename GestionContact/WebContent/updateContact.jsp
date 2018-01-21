@@ -8,13 +8,20 @@
         <title>Mise-a-jour Contact</title>
     </head>
     <%
+    
+    	String msg = (String)request.getAttribute("update");
+    	if(msg == null){%>
+    		<h1>Resgitre...</h1>
+    	<%}else{%>
+    		<h1><%=msg %></h1>
+    	<%} %>
+    
+    <%
     	Long idContact = Long.parseLong(request.getParameter("idContact"));
     	DaoContact dao = new DaoContact();
     	ContactService contactService = new ContactService(dao);
 		Contact contact = contactService.getContactById(idContact); 
-		
-		
-		
+
 		Set<PhoneNumber> phones = contact.getPhones(); 
 		Iterator it = phones.iterator();
 		
@@ -36,17 +43,25 @@
 			}
 		}
 		
-		String amis = "";
-		String collegues = "";
-		String  famille = "";
+		Boolean amis = false;
+		Boolean collegues = false;
+		Boolean  famille = false;
 		
 		Set<ContactGroup> groups = contact.getBooks(); 
 		Iterator itp = groups.iterator();
-		
-		
-		
-		
-		
+		while(itp.hasNext()) { 
+			ContactGroup g = (ContactGroup) itp.next();
+			if(g.getGroupName().equals("Amis")){
+				amis = true;
+			}
+			if(g.getGroupName().equals("Collegues")){
+				collegues = true;
+			}
+			if(g.getGroupName().equals("Famille")){
+				famille = true;
+			}
+		}
+
     %>
     <body>
         <form action="UpdateContact" method="post" >
@@ -67,40 +82,37 @@
 			House Phone: <input type="text" name="telMaison" value=<%=telMaison %> ><br /> 
 		
 			Office Phone: <input type="text" name="telBureau" value=<%=telBureau %> ><br /> 
-				
 			
-			
-			
-			<%if (groups.size()!=0){ %>
-				<% while(itp.hasNext()) { ContactGroup g = (ContactGroup)itp.next(); %>
-					<%if(g.getGroupName().equals("Amis")){ %>
-						Friends: <input type="checkbox" name="amis" value="amis" checked /><br /> 
-					<%}%>
-						
-					<%if(g.getGroupName().equals("Collegues")){ %>
-						Colleagues: <input type="checkbox" name="collegues" value="collegues" checked /><br />
-					
-					<%} %>
-					<%if(g.getGroupName().equals("Famille")){ %>
-						Family: <input type="checkbox" name="famille" value="famille" checked /><br />
-				
-					<% } %>
-				<% } %>	
-				
+			<%if (amis){ %>
+				Friends: <input type="checkbox" name="amis" value="Amis" checked="checked" /><br />
 			<%}else{ %>
-				Friends: <input type="checkbox" name="amis" value="amis" > Amis<br /> 
-				Colleagues: <input type="checkbox" name="collegues" value="collegues"  >Collegues<br />
-				Family: <input type="checkbox" name="famille" value="famille"  >Famille<br />
+				Friends: <input type="checkbox" name="amis" value="Amis" ><br /> 
 			<%} %>
+			<%if (collegues){ %>
+				Colleagues: <input type="checkbox" name="collegues" value="Collegues" checked="checked" /><br />
+			<%}else{ %>
+				Colleagues: <input type="checkbox" name="collegues" value="Collegues"  /><br />
+			<%} %>
+			<%if (famille){ %>
+				Family: <input type="checkbox" name="famille" value="Famille" checked="checked" /><br />
+			<%}else{ %>
+				Family: <input type="checkbox" name="famille" value="Famille" /><br />
+			<%} %>
+				
 			
 			<input type="submit" value="Mettre-a-jour le contact"/>
          </form>
-			<form action="UpdateContact" method="post" >
-					<input type="button" name="New group" value="nouveauGroupe" />
-			</form>
-			
+         
+		<!--  <form action="NewContactGroup" method="post" > 
+			  </form>
+		-->
+		
+		<input type="button" name="New group" value="nouveauGroupe" />
+		
+		
+		
             	
-            <a href="accueil.jsp"><input type="reset" value="Annuler"/></a>
+       <a href="accueil.jsp"><input type="reset" value="Annuler"/></a>
 
         
     </body>

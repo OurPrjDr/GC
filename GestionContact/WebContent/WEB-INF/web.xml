@@ -60,8 +60,28 @@
     <servlet-name>SignServlet</servlet-name>
     <servlet-class>Servlets.SignServlet</servlet-class>
   </servlet>
-   <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>SignServlet</servlet-name>
     <url-pattern>/SignServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SignOut</display-name>
+    <servlet-name>SignOut</servlet-name>
+    <servlet-class>Servlets.SignOut</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SignOut</servlet-name>
+    <url-pattern>/Servlets/SignOut</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>NewContactGroup</display-name>
+    <servlet-name>NewContactGroup</servlet-name>
+    <servlet-class>Servlets.NewContactGroup</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NewContactGroup</servlet-name>
+    <url-pattern>/NewContactGroup</url-pattern>
   </servlet-mapping>
 </web-app>

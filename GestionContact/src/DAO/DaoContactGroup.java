@@ -25,7 +25,7 @@ public class DaoContactGroup {
 		session.save(cG);
 		tx.commit();
 		
-		System.out.println("createContactGroup réussi");
+		System.out.println("createContactGroup reussi");
 		return cG;
 		
 	}
@@ -60,10 +60,11 @@ public class DaoContactGroup {
 			if(!tx.isActive()) tx = session.beginTransaction();
 	
 			ContactGroup contactGroup = (ContactGroup) session.load(ContactGroup.class, id);
-			tx = session.getTransaction();
-			if(!tx.isActive()) tx = session.beginTransaction();
+			System.out.println("Group@@@@ : "+contactGroup.getIdContactGroup());
+			
 			session.delete(contactGroup);
 			tx.commit();
+			System.out.println("deleteContactGroup reussi");
 			return true;
 		} catch(Exception e){
 			return false;
@@ -80,7 +81,6 @@ public class DaoContactGroup {
 		if(!tx.isActive()) tx = session.beginTransaction();
 		session.delete(contactGroup);
 		tx.commit();
-		System.out.println("deletePhoneNumber réussi");
 	}
 
 	public List<ContactGroup> findAll() {

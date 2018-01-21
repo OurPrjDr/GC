@@ -1,7 +1,10 @@
 package DAO;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Example;
@@ -10,6 +13,7 @@ import Util.HibernateUtil;
 
 import Domains.Account;
 import Domains.Address;
+import Domains.Contact;
 import Domains.Entreprise;
 
 
@@ -69,6 +73,32 @@ public class DaoEntreprise {
 		tx.commit();
 		return entreprise;
 	}
+	public Set<Entreprise> getAllEntreprises() {
+			
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Set<Entreprise> sc = new HashSet<Entreprise>();
+	      	try{
+	      		
+	      		 Transaction tx = session.getTransaction();
+	    		 if(!tx.isActive()) tx = session.beginTransaction();
+		        
+		         Query query = session.createQuery("from Entreprise");
+		         //query.addScalar("id", Hibernate.INT).setResultTransformer(Transformers.aliasToBean(Contact.class));
+		        // query.setResultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP);
+		         List<Entreprise> data = query.list();
+		         sc.addAll(data);
+		         tx.commit();
+	      	} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+	         finally {
+	 			session.clear();
+	
+	 		}
+		        
+	         return sc;
+		}
 	
 	
 }

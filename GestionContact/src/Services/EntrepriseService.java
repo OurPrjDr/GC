@@ -1,6 +1,7 @@
 package Services;
 
 import java.util.List;
+import java.util.Set;
 
 import DAO.DaoEntreprise;
 import Domains.Account;
@@ -41,6 +42,14 @@ public class EntrepriseService implements IEntrepriseService {
 	public Entreprise getEntreprise(long id){
 		try{
 			return dao.getEntreprise(id);
+		} catch (Exception e){
+			return null;
+		}
+	}
+
+	public Set<Entreprise> getAllEntreprises() {
+		try{
+			return dao.getAllEntreprises();
 		} catch (Exception e){
 			return null;
 		}
