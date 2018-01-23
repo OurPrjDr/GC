@@ -5,6 +5,7 @@
 <%@page import="java.util.Set"%>
 <%@page import="Domains.Entreprise"%>
 <%@ include file="navbar.jsp" %>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -13,10 +14,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src='./design/js/bootstrap.js'></script>
+<link href='./design/css/bootstrap.min.css' rel='stylesheet'>
+
 <title>Insert title here</title>
 </head>
 <body>
- 
  <ul class="user">
     			<li>
     				<%
@@ -62,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 
 %>
-<table border="1" cellpadding="5" cellspacing="1" >
+<table class="table table-hover" >
        <tr>
        	  <th>Id</th>
           <th>FisrtName</th>
@@ -85,10 +88,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	          <td><%=c.getFirstName() %></td>
 	          <td><%=c.getLastName() %></td>
 	          <td><%=c.getEmail() %></td>
-	          <td><%=c.getAddress().getStreet() %></td>
-	          <td><%=c.getAddress().getCity() %></td>
-	          <td><%=c.getAddress().getZip() %></td>
-	          <td><%=c.getAddress().getStreet() %></td>
+	          <td><% if (c.getAddress() != null) { %><%=c.getAddress().getStreet() %><% } %></td>
+	          <td><% if (c.getAddress() != null) { %><%=c.getAddress().getCity() %><% } %></td>
+	          <td><% if (c.getAddress() != null) { %><%=c.getAddress().getZip() %><% } %></td>
+	          <td><% if (c.getAddress() != null) { %><%=c.getAddress().getCountry() %><% } %></td>
 	         
 	          <td>
 	          	  <a href="updateContact.jsp?idContact=<%=c.getIdContact() %>" ><input type="button" name="Edit" id="Edit" value="Edit" /></a>
