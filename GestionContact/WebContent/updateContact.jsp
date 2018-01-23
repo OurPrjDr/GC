@@ -55,7 +55,7 @@
     <body>
         <form action="UpdateContact" method="post" >
         	Id du contact à modifier: <input type="text" name="idContact" value=<%=contact.getIdContact()%> readonly /><br /> 
-            Num Siret: <input type="text" name="numSiret"  /><br /> 
+            Num Siret: <input type="text" name="numSiret"  readonly/><br /> 
             FirstName: <input type="text" name="prenom" value=<%=contact.getFirstName() %> /><br /> 
             LastName: <input type="text" name="nom" value=<%=contact.getLastName() %> /><br /> 
             Email: <input type="text" name="email" value=<%=contact.getEmail() %> /><br />

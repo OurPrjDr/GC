@@ -18,10 +18,17 @@
  
  <form method="post" action="NewContact">
   <div class="container">
- 
+ <label for="checkSiret">
+    <input type="checkbox" id="checkSiret" onclick="ShowHideSiret(this)" />
+    Are you an Entreprise ?
+</label>
+<hr />
+<div id="divsiret" style="display: none">
   	<label><b>Numero Siret</b></label>
     <input type="text" placeholder="Enter numero siret" name="numSiret" />
-    <br>
+</div>
+
+
     <label><b>Fist Name</b></label>
     <input type="text" placeholder="Enter first name" name="firstName" required/>
     <br>
@@ -121,6 +128,12 @@
 			        x.style.display = "none";
 			    }
 			} 
+
+		     function ShowHideSiret(checkSiret) {
+		         var divsiret = document.getElementById("divsiret");
+		         divsiret.style.display = checkSiret.checked ? "block" : "none";
+		     }
+		     
 		</script>
     </fieldset>
     
