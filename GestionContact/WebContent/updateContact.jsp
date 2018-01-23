@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.Iterator" contentType="text/html; charset=UTF-8"
+<%@ page errorPage="/error.jsp" language="java" import="java.util.Iterator" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="DAO.DaoContact,DAO.DaoEntreprise,Domains.Contact,Domains.PhoneNumber,Domains.ContactGroup,Domains.Entreprise,Services.ContactService"%>  
 <%@page import="java.util.Set"%>
