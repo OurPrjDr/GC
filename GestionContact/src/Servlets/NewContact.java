@@ -62,6 +62,7 @@ public class NewContact extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		
 		try {
 	        String firstName = request.getParameter("firstName");
 	        String lastName = request.getParameter("lastName");

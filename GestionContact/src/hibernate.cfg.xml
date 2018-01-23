@@ -9,8 +9,23 @@
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/gestion</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password"></property>
+        <property name="hibernate.connection.password">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+		<!--  Utiliser le cache de second niveau -->        
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+		<property name="hibernate.cache.use_query_cache">true</property>
+		 
+		<property name = "hibernate.cache.provider_class">
+         org.hibernate.cache.EhCacheProvider
+      	</property>
+		 
+	     
+        <property name="hibernate.cache.region.factory_class"> 
+         org.hibernate.cache.ehcache.EhCacheRegionFactory
+         </property>
+         
+         <property name="net.sf.ehcache.configurationResourceName">ehcache.xml</property>
         
          <!-- fait en sorte qu'Hibernate gere automatiquement la session -->
          <!-- Celle-ci est liée au thread local. -->
