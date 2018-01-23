@@ -49,18 +49,7 @@
 		
 		Set<ContactGroup> groups = contact.getBooks(); 
 		Iterator itp = groups.iterator();
-		while(itp.hasNext()) { 
-			ContactGroup g = (ContactGroup) itp.next();
-			if(g.getGroupName().equals("Amis")){
-				amis = true;
-			}
-			if(g.getGroupName().equals("Collegues")){
-				collegues = true;
-			}
-			if(g.getGroupName().equals("Famille")){
-				famille = true;
-			}
-		}
+		
 
     %>
     <body>
@@ -83,23 +72,33 @@
 		
 			Office Phone: <input type="text" name="telBureau" value=<%=telBureau %> ><br /> 
 			
-			<%if (amis){ %>
-				Friends: <input type="checkbox" name="amis" value="Amis" checked="checked" /><br />
-			<%}else{ %>
-				Friends: <input type="checkbox" name="amis" value="Amis" ><br /> 
-			<%} %>
-			<%if (collegues){ %>
-				Colleagues: <input type="checkbox" name="collegues" value="Collegues" checked="checked" /><br />
-			<%}else{ %>
-				Colleagues: <input type="checkbox" name="collegues" value="Collegues"  /><br />
-			<%} %>
-			<%if (famille){ %>
-				Family: <input type="checkbox" name="famille" value="Famille" checked="checked" /><br />
-			<%}else{ %>
-				Family: <input type="checkbox" name="famille" value="Famille" /><br />
-			<%} %>
-				
+			<%  while(itp.hasNext()) {  
+				ContactGroup g = (ContactGroup) itp.next();
+			%>
+			 	<%=g.getGroupName() %>: <input type="checkbox" name="<%=g.getGroupName()%>" value="<%=g.getGroupName()%>" checked="checked" /><br />
+		   
+			<% } %>
 			
+			<a href="#" class="btn" onclick="addGroup()">Ajouter autre Groupe</a>
+
+			<div id="new" style="display:none">
+	  		<input type="text" placeholder="Enter new groupe" name="new_group"   /> 
+	  		</div> 
+	
+		
+		<script type='text/javascript'>
+			 
+			function addGroup() {
+			    var x = document.getElementById("new");
+			    if (x.style.display === "none") {
+			        x.style.display = "block";
+			    } else {
+			        x.style.display = "none";
+			    }
+			} 
+		</script>
+		
+		
 			<input type="submit" value="Mettre-a-jour le contact"/>
          </form>
          

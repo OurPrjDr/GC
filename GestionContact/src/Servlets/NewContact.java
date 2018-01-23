@@ -73,7 +73,9 @@ public class NewContact extends HttpServlet {
 	        String zip = request.getParameter("zip");
 	        String country = request.getParameter("country");
 	        
-	        
+	        String new_group = request.getParameter("new_group");
+	        	
+         
 	        boolean okFirstName = firstName!=null && firstName.length()>0;
 			boolean okLastName = lastName!=null && lastName.length()>0;
 			boolean okEmail = email!=null && email.length()>5 && email.contains("@") && email.contains(".");
@@ -83,6 +85,7 @@ public class NewContact extends HttpServlet {
 			boolean okCity = city!=null && city.length()>0;
 			boolean okCountry = country!=null && country.length()>0;
 			
+ 
 			System.out.println("avant account");
 
 			Account account = (Account) request.getSession().getAttribute("account");
@@ -139,6 +142,12 @@ public class NewContact extends HttpServlet {
 		            	contactService.addContactInGroup(c.getIdContact(), cg.getIdContactGroup());
 		            }
 		        }
+ 
+ 				boolean okgroup = new_group!=null && new_group.length()>0;
+				if(okgroup) {
+					cg = contactGroupService.createContactGroup(new_group);
+	            	contactService.addContactInGroup(c.getIdContact(), cg.getIdContactGroup());
+				}
 		        
 		        //request.setAttribute("success", true);
 				//request.setAttribute("message", "Contact created !");

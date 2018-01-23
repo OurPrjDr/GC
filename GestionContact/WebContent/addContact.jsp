@@ -59,8 +59,7 @@
 		    <legend >Mobile Phones</legend>
  		        
 		        
-		        <label><b>Phone Number</b></label>
-		        <input type="text" placeholder="Enter Mobile Phone number" name="phoneMobileNumber"   />  <br>
+ 		        <input type="text" placeholder="Enter Mobile Phone number" name="phoneMobileNumber"   />  <br>
 		        
         </fieldset>
                 <fieldset>
@@ -68,8 +67,7 @@
  		        
 		    
 		        
-		        <label><b>Phone Number</b></label>
-		        <input type="text" placeholder="Enter House Phone number" name="phoneHouseNumber"   />  <br>
+ 		        <input type="text" placeholder="Enter House Phone number" name="phoneHouseNumber"   />  <br>
 		        
         </fieldset>
                 <fieldset>
@@ -77,8 +75,7 @@
  		        
 		        
 		        
-		        <label><b>Phone Number</b></label>
-		        <input type="text" placeholder="Enter Office Phone number" name="phoneOfficeNumber"   />  <br>
+ 		        <input type="text" placeholder="Enter Office Phone number" name="phoneOfficeNumber"   />  <br>
 		        
         </fieldset>
          
@@ -89,8 +86,8 @@
     	
 		<select id='groupesSelect' name='groupes' multiple='multiple'
 			style='width: 100%'>
-			<option value='Amis'>Amis</option>
 			<option value='Collegues'>Collegues</option>
+			<option value='Amis'>Amis</option>
 			<option value='Famille'>Famille</option>
 			<%
 			for (String nomDeGroupe : groupes) {
@@ -101,6 +98,13 @@
 			%>
 		</select>
 			
+		<a href="#" class="btn" onclick="addGroup()">Autres Groupe</a>
+
+		<div id="new" style="display:none">
+  		<input type="text" placeholder="Enter new groupe" name="new_group"   /> 
+  		</div> 
+	
+		
 		<script type='text/javascript'>
 			$('#groupesSelect').select2({
 				/**/
@@ -109,6 +113,14 @@
 						';', '\\', '/' ],
 				placeholder : 'Entrer des groupes associés au contact'
 			});
+			function addGroup() {
+			    var x = document.getElementById("new");
+			    if (x.style.display === "none") {
+			        x.style.display = "block";
+			    } else {
+			        x.style.display = "none";
+			    }
+			} 
 		</script>
     </fieldset>
     

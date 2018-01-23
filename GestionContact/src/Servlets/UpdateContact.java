@@ -56,7 +56,8 @@ public class UpdateContact extends HttpServlet {
         String collegues = request.getParameter("collegues");
         String famille = request.getParameter("famille");
         
-       
+        String new_group = request.getParameter("new_group");
+
 
         //update address
         DaoAddress daoAddress = new DaoAddress();
@@ -169,6 +170,10 @@ public class UpdateContact extends HttpServlet {
         	
      	}  
         
+ 		if(new_group!=null && new_group.length()>0) {
+			cg = contactGroupService.createContactGroup(new_group);
+        	contactService.addContactInGroup(c.getIdContact(), cg.getIdContactGroup());
+		}
         request.setAttribute("update", "Contact updated !");
         RequestDispatcher dispatcher = request.getRequestDispatcher("/updateContact.jsp");
 		dispatcher.forward(request, response);
