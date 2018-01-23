@@ -4,6 +4,8 @@
 <html>
 
 <head>
+<script src='./design/js/bootstrap.js'></script>
+<link href='./design/css/bootstrap.min.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -11,10 +13,16 @@
 
 
 <br/><br/><br/>
-<a href="sign.jsp?SignInOrUp=up">Sign up</a> or <a href="sign.jsp?SignInOrUp=in">Login</a>
+  
+  <div class="btn-group btn-group-lg" role="group" aria-label="Large button group">
+    <a  href="sign.jsp?SignInOrUp=up" class="btn btn-primary">Sign up</a>
+    <a  href="sign.jsp?SignInOrUp=in" class="btn btn-primary">Sign in</a>
+  </div>
+ 
 
-
-
+<div class="row">
+    <img style="width:100%;height:600px" src="/GestionContact/image/contact.jpg" alt="contact">
+</div>
 
 </body>
 
