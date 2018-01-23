@@ -5,8 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Add Contact</title>
-</head>
+
+<script src='./design/js/bootstrap.js'></script>
+<link href='./design/css/bootstrap.min.css' rel='stylesheet'></head>
 <body>
 
 <%@page import="java.util.Set"%>
@@ -18,71 +19,81 @@
  
  <form method="post" action="NewContact">
   <div class="container">
+  			<br>
+            <h3 class="text-on-pannel text-primary"><strong class="text-uppercase"> Add New Contact </strong></h3>
+  			<br>
  <label for="checkSiret">
     <input type="checkbox" id="checkSiret" onclick="ShowHideSiret(this)" />
-    Are you an Entreprise ?
+    Contact Entreprise ?
 </label>
 <hr />
-<div id="divsiret" style="display: none">
+<div id="divsiret" class="form-group" style="display: none">
   	<label><b>Numero Siret</b></label>
-    <input type="text" placeholder="Enter numero siret" name="numSiret" />
+    <input class="form-control"  type="text" placeholder="Enter numero siret" name="numSiret" />
 </div>
 
-
+  <div class="form-group">
     <label><b>Fist Name</b></label>
-    <input type="text" placeholder="Enter first name" name="firstName" required/>
-    <br>
+    <input class="form-control" type="text" placeholder="Enter first name" name="firstName" required/>
+  </div>
+    <div class="form-group">
     <label><b>Last Name</b></label>
-    <input type="text" placeholder="Enter last name" name="lastName" required/>
-        <br>
-    
+    <input class="form-control" type="text" placeholder="Enter last name" name="lastName" required/>
+      </div>  
+      <div class="form-group">
     <label><b>Email</b></label>
-    <input type="text" placeholder="Enter email" name="email" required/>
-        <br>
-    
+    <input class="form-control" type="email" placeholder="Enter email" name="email" required/>
+        
+    </div>
  
     
-     <fieldset>
+   <fieldset>
     <legend>Address</legend>
- 
+   <div class="form-group">
         <label><b>Street</b></label>
-    		<input type="text" placeholder="Enter street" name="street"  />
-        <br>
+    		<input class="form-control" type="text" placeholder="Enter street" name="street"  />
+     </div>  
+       <div class="form-group"> 
          <label><b>City</b></label>
-    		<input type="text" placeholder="Enter city" name="city" />
-        <br>
+    		
+    		<input class="form-control" type="text" placeholder="Enter city" name="city" />
+          </div>
+            <div class="form-group">
                  <label><b>Zip</b></label>
-    		<input type="text" placeholder="Enter zip" name="zip"  />
-        <br>
+    		<input class="form-control" type="text" placeholder="Enter zip" name="zip"  />
+        </div>
+          <div class="form-group">
                  <label><b>Country</b></label>
-    		<input type="text" placeholder="Enter country" name="country"  />
-        <br>
+    		<input class="form-control" type="text" placeholder="Enter country" name="country"  />
+        </div>
     </fieldset>
     
     
     <fieldset>
     <legend>Phones</legend>
         <fieldset>
-		    <legend >Mobile Phones</legend>
+          <div class="form-group">
+		      <label><b>Mobile Phone</b></label>
  		        
-		        
- 		        <input type="text" placeholder="Enter Mobile Phone number" name="phoneMobileNumber"   />  <br>
-		        
+ 		        
+ 		        <input class="form-control" type="text" placeholder="Enter Mobile Phone number" name="phoneMobileNumber"   />  
+		      </div>  
         </fieldset>
                 <fieldset>
-		    <legend>House Phones</legend>
+                  <div class="form-group">
+		      <label><b>House Phone</b></label>
  		        
 		    
 		        
- 		        <input type="text" placeholder="Enter House Phone number" name="phoneHouseNumber"   />  <br>
-		        
+ 		        <input class="form-control" type="text" placeholder="Enter House Phone number" name="phoneHouseNumber"   />  
+		        </div>
         </fieldset>
                 <fieldset>
-		    <legend>Office Phones</legend>
+		      <label><b>Office Phone</b></label>
  		        
 		        
 		        
- 		        <input type="text" placeholder="Enter Office Phone number" name="phoneOfficeNumber"   />  <br>
+ 		        <input class="form-control" type="text" placeholder="Enter Office Phone number" name="phoneOfficeNumber"   />  
 		        
         </fieldset>
          
@@ -91,7 +102,7 @@
 	<fieldset>
     	<legend>Groupes</legend>
     	
-		<select id='groupesSelect' name='groupes' multiple='multiple'
+		<select class="form-control" id='groupesSelect' name='groupes' multiple='multiple'
 			style='width: 100%'>
 			<option value='Collegues'>Collegues</option>
 			<option value='Amis'>Amis</option>
@@ -105,12 +116,12 @@
 			%>
 		</select>
 			
-		<a href="#" class="btn" onclick="addGroup()">Autres Groupe</a>
-
+		<a href="#new" class="btn" onclick="addGroup()">Autres Groupe</a>
+		<br>
 		<div id="new" style="display:none">
-  		<input type="text" placeholder="Enter new groupe" name="new_group"   /> 
+  		<input class="form-control" type="text" placeholder="Enter new groupe" name="new_group"   /> 
   		</div> 
-	
+		<br>
 		
 		<script type='text/javascript'>
 			$('#groupesSelect').select2({
@@ -137,8 +148,8 @@
 		</script>
     </fieldset>
     
-    <input type="submit" value="Ajouter le contact"/>     
-    <input type="reset" value="Annuler"/> 
+    <input class="btn btn-primary" type="submit" value="Ajouter le contact"/>     
+    <input class="btn btn-secondary" type="reset" value="Annuler"/> 
    </div>
   </form> 
  

@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Remove Contact</title>
-</head>
+
+<script src='./design/js/bootstrap.js'></script>
+<link href='./design/css/bootstrap.min.css' rel='stylesheet'></head>
 <body>
 <% 
    Long idContact = null;
@@ -14,13 +15,16 @@
 	}%>
  <form method="post" action="DeleteContact">
   <div class="container">
-    <label><b>Id Contact</b></label>
-    <input type="text" placeholder="Enter Id" value=<%=idContact %> name="idContact" required/>
-    <br>
+         <h3 class="text-on-pannel text-primary"><strong class="text-uppercase"> Delete Contact </strong></h3>
+  
+    <div class="form-group"> 
+    	<label><b>Id Contact</b></label>
+    	<input class="from-control" type="text" placeholder="Enter Id" value=<%=idContact %> name="idContact" required/>
+    </div>
 
-    <input type="submit" value="Supprimer le contact"/>     
-    <input type="reset" value="Annuler"/> 
-   </div>
+    <input class="btn btn-primary" type="submit" value="Supprimer le contact"/>     
+    <input class="btn btn-secondary" type="reset" value="Annuler"/> 
+  </div>
   </form> 
 
 

@@ -44,9 +44,9 @@
        <h3 class="text-on-pannel text-primary"><strong class="text-uppercase"> Sign Up </strong></h3>
  
 			<input type="hidden" name="SignInOrUp" value="up" />
-			Login : <input type="text" class="form-control" name="login" /><br>
-			Password : <input type="password" class="form-control" name="password" /><br> 
-			Repeat password : <input type="password" class="form-control" name="secondPassword"><br> 
+			Login : <input type="text" class="form-control" name="login" />
+			Password : <input type="password" class="form-control" name="password" /> 
+			Repeat password : <input type="password" class="form-control" name="secondPassword"> 
 			
 			<br/> 
 			<button class="btn btn-primary" type="submit">Sign up</button>
@@ -57,8 +57,8 @@
 		 	
 		   
 			<input type="hidden" name="SignInOrUp" value="in" />
-			Login : <input type="text" class="form-control" name="login" /><br>
-			Password : <input type="password" class="form-control" name="password" /><br> 
+			Login : <input type="text" class="form-control" name="login" />
+			Password : <input type="password" class="form-control" name="password" /> 
 			
 			<br/> 
 			<button class="btn btn-primary" type="submit">Sign in</button>

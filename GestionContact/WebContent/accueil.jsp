@@ -16,8 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src='./design/js/bootstrap.js'></script>
 <link href='./design/css/bootstrap.min.css' rel='stylesheet'>
-
-<title>Insert title here</title>
+ 
 </head>
 <body>
  <ul class="user">
@@ -94,11 +93,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	          <td><% if (c.getAddress() != null) { %><%=c.getAddress().getCountry() %><% } %></td>
 	         
 	          <td>
-	          	  <a href="updateContact.jsp?idContact=<%=c.getIdContact() %>" ><input type="button" name="Edit" id="Edit" value="Edit" /></a>
+	          	  <a href="updateContact.jsp?idContact=<%=c.getIdContact() %>" ><input class="btn btn-primary" type="button" name="Edit" id="Edit" value="Edit" /></a>
 	          	
 	          </td>
 	          <td>
-	          	  <a href="removeContact.jsp?idContact=<%=c.getIdContact() %>"><input type="button" name="Delete" id="Deletet" value="Delete" /></a>
+	          	  <a href="removeContact.jsp?idContact=<%=c.getIdContact() %>"><input class="btn btn-danger" type="button" name="Delete" id="Deletet" value="Delete" /></a>
 			  </td>
 			 
            <tr>
