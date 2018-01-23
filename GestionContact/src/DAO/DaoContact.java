@@ -69,11 +69,13 @@ public class DaoContact {
 			Transaction tx = session.getTransaction();
 			if(!tx.isActive()) tx = session.beginTransaction();
 			
-			Contact contact = (Contact) session.load(Contact.class, id);
+			Contact contact = (Contact) session.get(Contact.class, id);
+			System.out.println("@@@@@@@@@@@"+contact.getIdContact());
 
 			session.delete(contact);
 			
 			tx.commit();
+			System.out.println("deletecontact reussit!!!");
 			return true;
 		} catch(Exception e){
 			e.printStackTrace();

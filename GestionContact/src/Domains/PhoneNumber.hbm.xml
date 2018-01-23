@@ -18,7 +18,7 @@
     	<column name="phoneNumber"  />
     </property>
     
-  	<many-to-one name="contact" class="Contact" column="ID_CONTACT" cascade="persist"
+  	<many-to-one name="contact" class="Contact" column="ID_CONTACT" 
              not-null="true" />
   
   </class>

@@ -111,11 +111,11 @@
 		
 		 <div class="form-group"> 
 			<input class="btn btn-primary" type="submit" value="Mettre-a-jour le contact"/>
-			 <a href="accueil.jsp"><input  class="btn btn-secondary" type="reset" value="Annuler"/></a>
+			 
 		</div>
          </form>
          </div>
-         
+         <a href="accueil.jsp"><input  class="btn btn-secondary" type="button" value="Annuler"/></a>
 		<!--  <form action="NewContactGroup" method="post" > 
 			  </form>
 		-->

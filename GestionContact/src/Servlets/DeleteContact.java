@@ -47,8 +47,7 @@ public class DeleteContact extends HttpServlet {
 		try {
 	       
 	        long idContact = Long.parseLong(request.getParameter("idContact"));
-	        
-	        
+
 	        DaoContact daoContact = new DaoContact();
 	        ContactService contactService = new ContactService(daoContact);
 	        contactService.deleteContact(idContact);

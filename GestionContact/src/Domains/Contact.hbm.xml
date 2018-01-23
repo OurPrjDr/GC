@@ -30,7 +30,7 @@
 		<many-to-many class="ContactGroup" column="ID_CONTACTGROUP" />
 	</set>
 
-	<set name="phones"  table="phonenumber_table" cascade="persist"  lazy="false" inverse="true" >
+	<set name="phones"  table="phonenumber_table" cascade="all"  lazy="false" inverse="true" >
 		<key column="ID_CONTACT" />
 		<one-to-many class="PhoneNumber" />
 	</set>
