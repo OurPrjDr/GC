@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-1-19 23:55:08 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="Domains.Account" table="ACCOUNT">
+        <id name="id_account" type="long" access="field">
+            <column name="ID_ACCOUNT" />
+            <generator class="increment" />
+        </id>
+        <property name="login" type="java.lang.String">
+            <column name="LOGIN" />
+        </property>
+        <property name="pwd" type="java.lang.String">
+            <column name="PWD" />
+        </property>
+        <set name="contacts" table="CONTACT" inverse="false" lazy="true">
+            <key>
+                <column name="ID_ACCOUNT" />
+            </key>
+            <one-to-many class="Domains.Contact" />
+        </set>
+        <property name="version" type="int" access="field">
+            <column name="VERSION" />
+        </property>
+    </class>
+</hibernate-mapping>

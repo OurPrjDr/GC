@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+    
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/gestionContactSpring" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
+	
+	<bean id="DaoAccount" class="DAO.DaoAccount" scope="prototype"/>
+	<bean id="DaoAddress" class="DAO.DaoAddress" scope="prototype"/>
+	<bean id="DaoContact" class="DAO.DaoContact" scope="prototype"/>
+	<bean id="DaoContactGroup" class="DAO.DaoContactGroup" scope="prototype"/>
+	<bean id="DaoEntreprise" class="DAO.DaoEntreprise" scope="prototype"/>
+	<bean id="DaoPhoneNumber" class="DAO.DaoPhoneNumber" scope="prototype"/>
+	<bean id="DaoRequetesHQL" class="DAO.DaoRequetesHQL" scope="prototype"/>
+	
+		
+	<!-- Exemples par beans -->
+	
+	<!-- Création d'un bean contact par constructeur -->
+
+	<bean id="idContact1" class="Domains.Contact" scope="prototype" >
+		<constructor-arg index="0">
+			<value>FirstName1</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<value>LastName1</value>
+		</constructor-arg>
+		<constructor-arg index="2">
+			<value>fisrtname1.lastname1@gmail.fr</value>
+		</constructor-arg>
+		<constructor-arg index="3">
+			<ref bean="idAddr1" />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<set>
+				<ref bean="idPN1" />
+				<ref bean="idPN2" />
+				<ref bean="idPN3" />
+			</set>
+		</constructor-arg>
+		<constructor-arg index="5">
+			<set>
+				<ref bean="idCG1" />
+				<ref bean="idCG2" />
+			</set>
+		</constructor-arg>
+	</bean>
+
+	<!-- Création d'un bean entreprise par propriétés -->
+
+	<bean id="idEntreprise1" class="Domains.Entreprise" scope="prototype">
+		<property name="numSiret" value="22" />
+		<property name="firstName" value="" />
+		<property name="lastName" value="entrepriseName1" />
+		<property name="email" value="entrepriseName1@mail.com" />
+		<property name="books">
+			<set>
+				<ref bean="idCG3" />
+				<ref bean="idCG4" />
+			</set>
+		</property>
+		<property name="address">
+			<ref bean="idAddr2" />
+		</property>
+		<property name="phones">
+			<set>
+				<ref bean="idPN4" />
+				<ref bean="idPN5" />
+				<ref bean="idPN6" />
+			</set>
+		</property>
+	</bean>
+
+	<!-- Les ContactGroup -->
+
+	<bean id="idCG1" class="Domains.ContactGroup" scope="prototype">
+		<property name="groupName" value="Amis" />
+	</bean>
+
+	<bean id="idCG2" class="Domains.ContactGroup" scope="prototype">
+		<property name="groupName" value="Famille" />
+	</bean>
+
+	<bean id="idCG3" class="Domains.ContactGroup" scope="prototype">
+		<property name="groupName" value="Collegues" />
+	</bean>
+
+	<bean id="idCG4" class="Domains.ContactGroup" scope="prototype">
+		<property name="groupName" value="Entreprise" />
+	</bean>
+
+
+	<!-- Les PhoneNumber -->
+
+	<bean id="idPN1" class="Domains.PhoneNumber" scope="prototype">
+		<property name="phoneKind" value="Maison" />
+		<property name="phoneNumber" value="0101010101" />
+	</bean>
+
+	<bean id="idPN2" class="Domains.PhoneNumber" scope="prototype">
+		<property name="phoneKind" value="Bureau" />
+		<property name="phoneNumber" value="0202020202" />
+	</bean>
+
+	<bean id="idPN3" class="Domains.PhoneNumber" scope="prototype">
+		<property name="phoneKind" value="Mobile" />
+		<property name="phoneNumber" value="0303030303" />
+	</bean>
+
+	<bean id="idPN4" class="Domains.PhoneNumber" scope="prototype">
+		<property name="phoneKind" value="Maison" />
+		<property name="phoneNumber" value="0404040404" />
+	</bean>
+
+	<bean id="idPN5" class="Domains.PhoneNumber" scope="prototype">
+		<property name="phoneKind" value="Bureau" />
+		<property name="phoneNumber" value="0505050505" />
+	</bean>
+
+	<bean id="idPN6" class="Domains.PhoneNumber" scope="prototype">
+		<property name="phoneKind" value="Mobile" />
+		<property name="phoneNumber" value="0606060606" />
+	</bean>
+
+	<!-- Les adresses -->
+
+	<bean id="idAddr1" class="Domains.Address" scope="prototype">
+		<property name="street" value="street 1" />
+		<property name="city" value="city 1" />
+		<property name="zip" value="zip 1" />
+		<property name="country" value="country 1" />
+	</bean>
+
+	<bean id="idAddr2" class="Domains.Address" scope="prototype">
+		<property name="street" value="street 2" />
+		<property name="city" value="city 2" />
+		<property name="zip" value="zip 2" />
+		<property name="country" value="country 2" />
+	</bean>
+	
+</beans>
