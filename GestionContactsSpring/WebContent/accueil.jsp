@@ -44,18 +44,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		
 </body>
 <%  
+
+	
     ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
     ContactService contactService = (ContactService) context.getBean("contactService");
 	Set<Contact> contactList = contactService.getAllContacts(); 
 	
     EntrepriseService entrepriseService = (EntrepriseService) context.getBean("entrepriseService");;
-
 	Set<Entreprise> entrepriseList = entrepriseService.getAllEntreprises();
 	
 	Iterator it = null;
-	
+	String e = "false";
 	if(entrepriseList.size()!=0){
 		it = entrepriseList.iterator();
+		e = "true";
 	}else{
 		it = contactList.iterator();
 	}
@@ -82,7 +84,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        
        
 	   <%  while(it.hasNext()){
-		   Contact c = (Contact)it.next();%>
+		   Contact c = null;
+		   if(e.equals("true")){
+			   c = (Entreprise)it.next();
+		   }else{
+			 c = (Contact)it.next();
+			 }%>
 	         <tr> 
 	          <td><%=c.getIdContact() %></td>
 	          <td><%=c.getFirstName() %></td>
@@ -94,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	          <td><% if (c.getAddress() != null) { %><%=c.getAddress().getCountry() %><% } %></td>
 	         
 	          <td>
-	          	  <a href="updateContact.jsp?idContact=<%=c.getIdContact() %>" ><input class="btn btn-primary" type="button" name="Edit" id="Edit" value="Edit" /></a>
+	          	  <a href="updateContact.jsp?idContact=<%=c.getIdContact() %>&entreprise=<%=e %> " ><input class="btn btn-primary" type="button" name="Edit" id="Edit" value="Edit" /></a>
 	          	
 	          </td>
 	          <td>

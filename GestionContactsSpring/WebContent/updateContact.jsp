@@ -1,7 +1,10 @@
 <%@ page errorPage="/error.jsp" language="java" import="java.util.Iterator" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="DAO.DaoContact,DAO.DaoEntreprise,Domains.Contact,Domains.PhoneNumber,Domains.ContactGroup,Domains.Entreprise,Services.ContactService"%>  
+<%@page import="DAO.DaoContact,DAO.DaoEntreprise,Domains.Contact,Domains.PhoneNumber,Domains.ContactGroup,Domains.Entreprise,Services.ContactService,Services.EntrepriseService"%>  
 <%@page import="java.util.Set"%>
+<%@page import="java.util.HashSet"%>
+<%@page import="org.springframework.context.ApplicationContext" %>
+<%@page import="org.springframework.web.context.support.WebApplicationContextUtils" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -9,23 +12,31 @@
 <script src='./design/js/bootstrap.js'></script>
 <link href='./design/css/bootstrap.min.css' rel='stylesheet'></head>
     </head>
-    <%
     
-    	String msg = (String)request.getAttribute("update");
-    	if(msg == null){%>
-    		<h1></h1>
-    	<%}else{%>
-    		<h1><%=msg %></h1>
-    	<%} %>
     
     <%
     	Long idContact = Long.parseLong(request.getParameter("idContact"));
-    	DaoContact dao = new DaoContact();
-    	ContactService contactService = new ContactService(dao);
-		Contact contact = contactService.getContactById(idContact); 
-
-		Set<PhoneNumber> phones = contact.getPhones(); 
+    	String entreprise = request.getParameter("entreprise");
+    	ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+    	Contact contact = null;
+    	Entreprise entre = null;
+    	Set<PhoneNumber> phones = new HashSet<PhoneNumber>();
+    	if(entreprise.equals("true")){
+    		
+    	    EntrepriseService entrepriseService = (EntrepriseService) context.getBean("entrepriseService");
+    	    entre = entrepriseService.getEntreprise(idContact);
+    	    ContactService contactService = (ContactService) context.getBean("contactService");
+        	contact = contactService.getContactById(idContact); 
+    	    phones = entre.getPhones(); 
+    	    
+    	}else{
+        	ContactService contactService = (ContactService) context.getBean("contactService");
+        	contact = contactService.getContactById(idContact); 
+        	phones = contact.getPhones(); 
+    	}
+    	
 		Iterator it = phones.iterator();
+		
 		
 		String telMobile = "";
 		String telMaison = "";
@@ -47,20 +58,26 @@
 		
 		Boolean amis = false;
 		Boolean collegues = false;
-		Boolean  famille = false;
+		Boolean famille = false;
+		
 		
 		Set<ContactGroup> groups = contact.getBooks(); 
+		
 		Iterator itp = groups.iterator();
 		
 
     %>
     <body>
-    <div class="container">
+   	 <div class="container">
              <h3 class="text-on-pannel text-primary"><strong class="text-uppercase"> Update Contact </strong></h3>
     
         <form action="UpdateContact" method="post" >
         	<input class="form-control" type="hidden" name="idContact" value=<%=contact.getIdContact()%> ><br /> 
-            Num Siret: <input  class="form-control"  type="text" name="numSiret"  readonly/><br /> 
+        	<%if(entreprise.equals("true")) {%>
+            	Num Siret: <input  class="form-control"  type="text" name="numSiret"  value=<%=entre.getNumSiret() %> readonly /><br /> 
+           	<%}else{ %>
+           		Num Siret: <input  class="form-control"  type="text" name="numSiret"  readonly /><br /> 
+           	<%} %>
             FirstName: <input  class="form-control"  type="text" name="prenom" value=<%=contact.getFirstName() %> /><br /> 
             LastName: <input   class="form-control"  type="text" name="nom" value=<%=contact.getLastName() %> /><br /> 
             Email: <input  class="form-control"  type="text" name="email" value=<%=contact.getEmail() %> /><br />
@@ -119,10 +136,6 @@
 			  </form>
 		-->
 		
-		 
 		
-            	
-      
-        
     </body>
 </html>

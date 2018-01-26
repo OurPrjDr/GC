@@ -70,7 +70,7 @@ public class DaoEntreprise implements IDaoEntreprise {
 		Transaction tx = session.getTransaction();
 		if(!tx.isActive()) tx = session.beginTransaction();
 
-		Entreprise entreprise = (Entreprise) session.load(Entreprise.class, id);
+		Entreprise entreprise = (Entreprise) session.get(Entreprise.class, id);
 		tx.commit();
 		return entreprise;
 	}
