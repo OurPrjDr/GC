@@ -85,38 +85,35 @@ public class NewContact extends HttpServlet {
 			boolean okCountry = country!=null && country.length()>0;
 			
  
-			System.out.println("avant account");
+			
 
 			Account account = (Account) request.getSession().getAttribute("account");
-			System.out.println("account"+account.getLogin());
 			
-			ApplicationContext ctx =
+			ApplicationContext context =
 		                WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		        
-			System.out.println("!!!!!!!!!!!!");
 			if(okFirstName && okLastName && okEmail && okStreet && okZip && okCity && okCountry){
 				
 				System.out.println("Address");
-				IDaoAddress daoAddress = (IDaoAddress) ctx.getBean("DaoAddress");
-	        	AddressService addressService = new AddressService(daoAddress);
+				AddressService addressService = (AddressService) context.getBean("addressService");
+
 	        	Address address = addressService.createAddress(street, city, zip, country);
 		        	
-	        	IDaoContact daoContact = (IDaoContact) ctx.getBean("DaoContact");
-		        ContactService contactService = new ContactService(daoContact);
+		        ContactService contactService = (ContactService) context.getBean("contactService");
+
 		        
 		        Contact c = null;
 		        if (numSiret != null && (!numSiret.equals(""))) {
 		        	System.out.println("numSiret");
-		           IDaoEntreprise daoEntreprise = (IDaoEntreprise) ctx.getBean("DaoEntreprise");
-		           EntrepriseService entrepriseService = new EntrepriseService(daoEntreprise);
-		            c = entrepriseService.createEntreprise(firstName, lastName, email, address, Long.parseLong(numSiret));
+		            EntrepriseService entrepriseService = (EntrepriseService) context.getBean("entrepriseService");;
+
+		        	c = entrepriseService.createEntreprise(firstName, lastName, email, address, Long.parseLong(numSiret));
 		        }else{
 		        	c = contactService.createContact(firstName, lastName, email, address);
 		        }
 		        
 		        System.out.println("Address");
-		        IDaoPhoneNumber daoPhoneNumber = (IDaoPhoneNumber) ctx.getBean("DaoPhoneNumber");
-		        PhoneNumberService phoneNumberService = new PhoneNumberService(daoPhoneNumber);
+		        PhoneNumberService phoneNumberService = (PhoneNumberService) context.getBean("phoneNumberService");
 		        
 		        String phone = "";
 		        Set<PhoneNumber> phones =new HashSet<PhoneNumber>();
@@ -131,8 +128,8 @@ public class NewContact extends HttpServlet {
 		        }  
 		        
 		        System.out.println("ContactGroup");
-		        IDaoContactGroup daoContactGroup = (IDaoContactGroup) ctx.getBean("DaoContactGroup");
-		        ContactGroupService contactGroupService = new ContactGroupService(daoContactGroup);
+		        ContactGroupService contactGroupService = (ContactGroupService) context.getBean("contactGroupService");
+
 		        String groupes[] = request.getParameterValues("groupes");
 		        
 		        ContactGroup cg = null;
@@ -153,13 +150,13 @@ public class NewContact extends HttpServlet {
 			     * Exemples ajoutés grace aux beans                   
 			     */
 			 
-				daoContact = (IDaoContact) ctx.getBean("DaoContact");
-		        contactService = new ContactService(daoContact);
-		        contactService.createContact((Contact) ctx.getBean("idContact1"));
+				//daoContact = (IDaoContact) context.getBean("DaoContact");
+		        //contactService = new ContactService(daoContact);
+		        //contactService.createContact((Contact) ctx.getBean("idContact1"));
 		        
-				daoContact = (IDaoContact) ctx.getBean("DaoContact");
-		        contactService = new ContactService(daoContact);
-		        contactService.createContact((Contact) ctx.getBean("idEntreprise1"));
+				//daoContact = (IDaoContact) ctx.getBean("DaoContact");
+		        //contactService = new ContactService(daoContact);
+		        //contactService.createContact((Contact) ctx.getBean("idEntreprise1"));
 		        
 		     
 		        /*

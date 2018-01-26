@@ -33,7 +33,7 @@
 </div>
 
   <div class="form-group">
-    <label><b>Fist Name</b></label>
+    <label><b>First Name</b></label>
     <input class="form-control" type="text" placeholder="Enter first name" name="firstName" required/>
   </div>
     <div class="form-group">

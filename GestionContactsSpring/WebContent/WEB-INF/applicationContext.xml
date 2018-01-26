@@ -13,9 +13,29 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/gestionContactSpring" />
+		<property name="url" value="jdbc:mysql://localhost:3306/gestioncontactspring" />
 		<property name="username" value="root" />
-		<property name="password" value="root" />
+		<property name="password" value="" />
+	</bean>
+	
+	<!-- DAO et Service -->
+	<bean id="accountService" class="Services.AccountService" scope="singleton">
+		<constructor-arg><ref bean="DaoAccount"/></constructor-arg>
+	</bean>
+	<bean id="addressService" class="Services.AddressService" scope="singleton">
+		<constructor-arg><ref bean="DaoAddress"/></constructor-arg>
+	</bean>
+	<bean id="contactService" class="Services.ContactService" scope="singleton">
+		<constructor-arg><ref bean="DaoContact"/></constructor-arg>
+	</bean>
+	<bean id="contactGroupService" class="Services.ContactGroupService" scope="singleton">
+		<constructor-arg><ref bean="DaoContactGroup"/></constructor-arg>
+	</bean>
+	<bean id="entrepriseService" class="Services.EntrepriseService" scope="singleton">
+		<constructor-arg><ref bean="DaoEntreprise"/></constructor-arg>
+	</bean>
+	<bean id="phoneNumberService" class="Services.PhoneNumberService" scope="singleton">
+		<constructor-arg><ref bean="DaoPhoneNumber"/></constructor-arg>
 	</bean>
 	
 	<bean id="DaoAccount" class="DAO.DaoAccount" scope="prototype"/>

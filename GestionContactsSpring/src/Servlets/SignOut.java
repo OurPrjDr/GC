@@ -36,7 +36,7 @@ public class SignOut extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(true);//true一定要写。否则，获取不到当前session时会自动创建一个
 		session.invalidate();
-		response.sendRedirect("/GestionContact/index.jsp");
+		response.sendRedirect("/GestionContactsSpring/index.jsp");
 	}
 
 }

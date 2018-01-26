@@ -70,16 +70,16 @@ public class NewContactGroup extends HttpServlet {
 			type="Famille";
 		}
 		 
-		ApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
-	    IDaoContact daoContact = (IDaoContact) ctx.getBean("DaoContact");
-		ContactService contactService = new ContactService(daoContact);
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+        ContactService contactService = (ContactService) context.getBean("contactService");
+
 		Contact c = contactService.getContactById(Long.parseLong(idC));
 		
         Set<ContactGroup> cgroupe = c.getBooks();
         Iterator itg =cgroupe.iterator();
         
-	    IDaoContactGroup daoContactGroup = (IDaoContactGroup) ctx.getBean("DaoContactGroup");
-        ContactGroupService contactGroupService = new ContactGroupService(daoContactGroup);
+        ContactGroupService contactGroupService = (ContactGroupService) context.getBean("contactGroupService");
+
         ContactGroup cg = null;
         
         if(cgroupe.size() == 0){

@@ -63,22 +63,22 @@ public class UpdateContact extends HttpServlet {
 
         //update address
         
-        ApplicationContext ctx =
+        ApplicationContext context =
                 WebApplicationContextUtils.getWebApplicationContext(getServletContext());
         
-        IDaoAddress daoAddress = (IDaoAddress) ctx.getBean("DaoAddress");
-    	AddressService addressService = new AddressService(daoAddress);
+		AddressService addressService = (AddressService) context.getBean("addressService");
+
     	addressService.updateAddress(Long.parseLong(idC), rue, ville, code, pays);
     	Address a = addressService.getAddressById(Long.parseLong(idC));
         
     	//update contact || entreprise
-    	IDaoContact daoContact = (IDaoContact) ctx.getBean("DaoContact");
-        ContactService contactService = new ContactService(daoContact);
+        ContactService contactService = (ContactService) context.getBean("contactService");
+
         Contact c = contactService.getContactById(Long.parseLong(idC));
 
         if (numSiret != null && (!numSiret.equals(""))) {
-        	IDaoEntreprise daoEntreprise = (IDaoEntreprise) ctx.getBean("DaoEntreprise");
-            EntrepriseService entrepriseService = new EntrepriseService(daoEntreprise);
+            EntrepriseService entrepriseService = (EntrepriseService) context.getBean("entrepriseService");;
+
             entrepriseService.updateEntreprise(Long.parseLong(idC), firstName, lastName, email,a , Long.parseLong(numSiret));
         }
         else{
@@ -93,8 +93,8 @@ public class UpdateContact extends HttpServlet {
         Boolean okHouse = false;
         Boolean okOffice = false;
 
-        IDaoPhoneNumber daoPhoneNumber = (IDaoPhoneNumber) ctx.getBean("DaoPhoneNumber");
-	    PhoneNumberService phoneNumberService = new PhoneNumberService(daoPhoneNumber);
+        PhoneNumberService phoneNumberService = (PhoneNumberService) context.getBean("phoneNumberService");
+
         
         while(it.hasNext()){
         	
@@ -149,8 +149,8 @@ public class UpdateContact extends HttpServlet {
         Set<ContactGroup> cgroupe = c.getBooks();
         Iterator itg =cgroupe.iterator();
         
-    	IDaoContactGroup daoContactGroup = (IDaoContactGroup) ctx.getBean("DaoContactGroup");
-        ContactGroupService contactGroupService = new ContactGroupService(daoContactGroup);
+        ContactGroupService contactGroupService = (ContactGroupService) context.getBean("contactGroupService");
+
         ContactGroup cg = null;
         
         if(cgroupe.size() == 0){
@@ -181,7 +181,7 @@ public class UpdateContact extends HttpServlet {
         	contactService.addContactInGroup(c.getIdContact(), cg.getIdContactGroup());
 		}
         request.setAttribute("update", "Contact updated !");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/updateContact.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/successUpdate.jsp");
 		dispatcher.forward(request, response);
     }
 

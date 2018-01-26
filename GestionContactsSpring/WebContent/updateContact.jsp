@@ -13,7 +13,7 @@
     
     	String msg = (String)request.getAttribute("update");
     	if(msg == null){%>
-    		<h1>Resgitre...</h1>
+    		<h1></h1>
     	<%}else{%>
     		<h1><%=msg %></h1>
     	<%} %>
@@ -59,8 +59,7 @@
              <h3 class="text-on-pannel text-primary"><strong class="text-uppercase"> Update Contact </strong></h3>
     
         <form action="UpdateContact" method="post" >
-        	Id du contact à modifier: 
-        	<input class="form-control" type="text" name="idContact" value=<%=contact.getIdContact()%> readonly /><br /> 
+        	<input class="form-control" type="hidden" name="idContact" value=<%=contact.getIdContact()%> ><br /> 
             Num Siret: <input  class="form-control"  type="text" name="numSiret"  readonly/><br /> 
             FirstName: <input  class="form-control"  type="text" name="prenom" value=<%=contact.getFirstName() %> /><br /> 
             LastName: <input   class="form-control"  type="text" name="nom" value=<%=contact.getLastName() %> /><br /> 

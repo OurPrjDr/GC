@@ -50,10 +50,10 @@ public class DeleteContact extends HttpServlet {
 	       
 	        long idContact = Long.parseLong(request.getParameter("idContact"));
 
-	        ApplicationContext ctx =
+	        ApplicationContext context =
 	                WebApplicationContextUtils.getWebApplicationContext(getServletContext());
-		    IDaoContact daoContact = (IDaoContact) ctx.getBean("DaoContact");
-	        ContactService contactService = new ContactService(daoContact);
+	        ContactService contactService = (ContactService) context.getBean("contactService");
+
 	        contactService.deleteContact(idContact);
 	        	       
 	        response.sendRedirect("accueil.jsp");

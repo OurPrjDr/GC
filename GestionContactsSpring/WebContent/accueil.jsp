@@ -4,6 +4,8 @@
 <%@page import="Services.EntrepriseService"%>
 <%@page import="java.util.Set"%>
 <%@page import="Domains.Entreprise"%>
+<%@page import="org.springframework.context.ApplicationContext" %>
+<%@page import="org.springframework.web.context.support.WebApplicationContextUtils" %>
 <%@ include file="navbar.jsp" %>
 
 <%
@@ -30,11 +32,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     				
    						<dl>
    							<dt>
-	    						<a>Bienvenu,<b><font color="red"><%=account.getLogin() %></font></b></a>
-	    						<a href="<%=path %>/Servlets/SignOut"><font color="#CDC9C9">Exit</font></a><!-- 绝对路径 -->
+	    						<a>Bienvenue, <b><font color="red"><%=account.getLogin() %></font></b></a>
+	    						<a href="<%=path %>/Servlets/SignOut"><font color="#CDC9C9">Déconnexion</font></a>
 	    						
-	    						<!-- 
-	    						<a href="lyons/control/HandleExit"><font color="#CDC9C9">退出</font></a><!-- 相对路径 -->
+	    						
 	    						 -->
    							</dt>
    						</dl>
@@ -43,12 +44,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		
 </body>
 <%  
-	DaoContact daoContact = new DaoContact();
-	ContactService contactService = new ContactService(daoContact);
+    ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+    ContactService contactService = (ContactService) context.getBean("contactService");
 	Set<Contact> contactList = contactService.getAllContacts(); 
 	
-	DaoEntreprise daoEntreprise = new DaoEntreprise();
-	EntrepriseService entrepriseService = new EntrepriseService(daoEntreprise);
+    EntrepriseService entrepriseService = (EntrepriseService) context.getBean("entrepriseService");;
+
 	Set<Entreprise> entrepriseList = entrepriseService.getAllEntreprises();
 	
 	Iterator it = null;
@@ -67,15 +68,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <table class="table table-hover" >
        <tr>
        	  <th>Id</th>
-          <th>FisrtName</th>
-          <th>LastName</th>
+          <th>Prénom</th>
+          <th>Nom</th>
           <th>Email</th>
-          <th>Street</th>
-          <th>City</th>
-          <th>Zip</th>
-          <th>Country</th>
-          <th>Edit</th>
-          <th>Delete</th>
+          <th>Rue</th>
+          <th>Ville</th>
+          <th>Code postal</th>
+          <th>Pays</th>
+          <th>Editer</th>
+          <th>Supprimer</th>
        </tr>
         
        

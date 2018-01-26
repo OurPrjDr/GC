@@ -75,29 +75,29 @@ public class SearchContact extends HttpServlet {
           //OutputStreamWriter out = new OutputStreamWriter(response.getOutputStream(), StandardCharsets.UTF_8);
           
           Set<Contact> res = null;
-  		  ApplicationContext ctx =
+  		  ApplicationContext context =
                 WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 
           if (typeSearch.compareTo("Simple") == 0) {
               /* Recherche simple */
       		Account account = (Account) request.getSession().getAttribute("account");
       		
-              IDaoContact daoContact = (IDaoContact) ctx.getBean("DaoContact"); 
-      	      ContactService contactService = new ContactService(daoContact);
+	        ContactService contactService = (ContactService) context.getBean("contactService");
+
               res = contactService.searchContact(firstName, lastName, email, adr, tels,cgroupe, numSiret,account);
           } else if (typeSearch.compareTo("Param") == 0) {
               /* Recherche avec requetes HQL */
-        	  IDaoRequetesHQL daoReq = (IDaoRequetesHQL)ctx.getBean("DAORequetesHQL");
+        	  IDaoRequetesHQL daoReq = (IDaoRequetesHQL)context.getBean("DAORequetesHQL");
               res = daoReq.reqFromParam(firstName, lastName, email, adr, tels,
                       cgroupe, numSiret);
           } else if (typeSearch.compareTo("Example") == 0) {
               /* Recherche avec requetes HQL */
-        	  IDaoRequetesHQL daoReq = (IDaoRequetesHQL)ctx.getBean("DAORequetesHQL");
+        	  IDaoRequetesHQL daoReq = (IDaoRequetesHQL)context.getBean("DAORequetesHQL");
               res = daoReq.reqExample(firstName, lastName, email, adr, tels,
                       cgroupe, numSiret);
           } else if (typeSearch.compareTo("Criteria") == 0) {
               /* Recherche avec requetes HQL */
-        	  IDaoRequetesHQL daoReq = (IDaoRequetesHQL)ctx.getBean("DAORequetesHQL");
+        	  IDaoRequetesHQL daoReq = (IDaoRequetesHQL)context.getBean("DAORequetesHQL");
               res = daoReq.reqCriteria(firstName, lastName, email, adr, tels,
                       cgroupe, numSiret);
           } else {
