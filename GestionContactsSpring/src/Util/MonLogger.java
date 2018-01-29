@@ -19,8 +19,9 @@ public class MonLogger {
 	 
   // Cette méthode est appelée à chaque fois (et avant) qu'une méthode du package  est interceptée 
   public void logMethodEntry(JoinPoint joinPoint) throws IOException {
-   
-  	  File f = new File("~/logGestionContactBefore.txt");
+   System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+	   String home = System.getProperty("user.home");
+  	  File f = new File(home + "/logGestionContactBefore.txt");
 	 
   	  PrintWriter out = null;
 		
@@ -37,20 +38,20 @@ public class MonLogger {
 		  out = new PrintWriter(f);
 	  }
     
-	  	//Object[] args = joinPoint.getArgs();
-		
-		// Nom de la méthode interceptée
-		String name = joinPoint.getSignature().toLongString();
-		StringBuffer sb = new StringBuffer(name + " called on: [" + LocalDateTime.now());
-		
- 
-		
-		sb.append("]");
-		   
-		    out.println(sb.toString());
-		    out.flush();
-		    out.close();
-  }
+	//Object[] args = joinPoint.getArgs();
+	
+	// Nom de la méthode interceptée
+	String name = joinPoint.getSignature().toLongString();
+	StringBuffer sb = new StringBuffer(name + " called on: [" + LocalDateTime.now());
+			
+	 
+			
+			sb.append("]");
+	   
+	out.println(sb.toString());
+	out.flush();
+	out.close();
+}
 
   // Cette méthode est appelée à chaque fois (et après) qu'une méthode du package  est interceptée 
   // Elle reçoit en argument 'result' qui est le retour de la méthode interceptée
