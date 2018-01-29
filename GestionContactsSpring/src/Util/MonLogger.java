@@ -20,7 +20,7 @@ public class MonLogger {
   // Cette méthode est appelée à chaque fois (et avant) qu'une méthode du package  est interceptée 
   public void logMethodEntry(JoinPoint joinPoint) throws IOException {
    
-  	  File f = new File("/home/hanitra/logGestionContactBefore.txt");
+  	  File f = new File("~/logGestionContactBefore.txt");
 	 
   	  PrintWriter out = null;
 		
