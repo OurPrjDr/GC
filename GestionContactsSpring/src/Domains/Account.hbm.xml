@@ -4,6 +4,9 @@
 <!-- Generated 2018-1-19 23:55:08 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="Domains.Account" table="ACCOUNT">
+    	<!-- A garder au debut du fichier de mapping -->
+    	<cache usage="read-write" />
+    
         <id name="id_account" type="long" access="field">
             <column name="ID_ACCOUNT" />
             <generator class="increment" />

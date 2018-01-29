@@ -4,6 +4,9 @@
 <!-- Generated 2018-1-19 23:55:08 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping package="Domains">
   <class name="Contact" table="contact_table" >
+  	<!-- A garder au debut du fichier de mapping -->
+    <cache usage="read-write" />
+    
   	 <id name="idContact" type="long" column="ID_CONTACT" >
    		<generator class="increment"/>
   	 </id>
