@@ -197,8 +197,7 @@
 		 
 		<aop:aspect id="loggingAspect" ref="monLogger">
 		    <aop:before method="logMethodEntry"  pointcut-ref="servicePointcut"/>    		
-		    <aop:after method="logMethodExit"   pointcut-ref="servicePointcut"/>  
-	    </aop:aspect>	    
+ 	    </aop:aspect>	    
 	</aop:config>
 	
  
