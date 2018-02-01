@@ -135,7 +135,7 @@ public class UpdateContact extends HttpServlet {
         }
         
         //ContactGroup update
-        String type = "";
+        /*String type = "";
 		if(amis!=null){
 			type="Amis";
 		}
@@ -145,7 +145,7 @@ public class UpdateContact extends HttpServlet {
 		if(famille!=null){
 			type="Famille";
 		}
-		
+		*/
         Set<ContactGroup> cgroupe = c.getBooks();
         Iterator itg =cgroupe.iterator();
         
@@ -153,7 +153,7 @@ public class UpdateContact extends HttpServlet {
 
         ContactGroup cg = null;
         
-        if(cgroupe.size() == 0){
+        /*if(cgroupe.size() == 0){
         	if(amis!=null){
         		cg = contactGroupService.createContactGroup(amis);
 		    	contactService.addContactInGroup(c.getIdContact(), cg.getIdContactGroup());
@@ -167,12 +167,16 @@ public class UpdateContact extends HttpServlet {
 		    	contactService.addContactInGroup(c.getIdContact(), cg.getIdContactGroup());
         	}
         }
-        
+        */
 
         while(itg.hasNext()){	
         	ContactGroup g = (ContactGroup) itg.next();
         	Long id = g.getIdContactGroup();
-        	contactGroupService.updateContactGroup(id, type);
+        	if((request.getParameter(g.getGroupName()) == null) && id != 0 )
+        	{
+        		contactGroupService.deleteContactGroup(id);
+        	}
+        	//contactGroupService.updateContactGroup(id, type);
         	
      	}  
         
