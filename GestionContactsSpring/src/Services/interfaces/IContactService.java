@@ -25,8 +25,7 @@ public interface IContactService {
 
 	void addPhonesInContact(long idContact, PhoneNumber pn);
 	
-	Set<Contact> searchContact(String firstName, String lastName, String email, Address address, Set<PhoneNumber> phones, Set<ContactGroup> groups, 
- 			String numSiret, Account acc);
+	Set<Contact> searchContact(String firstName, String lastName, String email, String numSiret);
 
 	void addContactInGroup(long id_cont, long id_group);	
 	

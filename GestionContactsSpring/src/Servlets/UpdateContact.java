@@ -68,6 +68,7 @@ public class UpdateContact extends HttpServlet {
         
 		AddressService addressService = (AddressService) context.getBean("addressService");
 
+
     	addressService.updateAddress(Long.parseLong(idC), rue, ville, code, pays);
     	Address a = addressService.getAddressById(Long.parseLong(idC));
         
@@ -184,6 +185,8 @@ public class UpdateContact extends HttpServlet {
 			cg = contactGroupService.createContactGroup(new_group);
         	contactService.addContactInGroup(c.getIdContact(), cg.getIdContactGroup());
 		}
+ 		
+ 		
         request.setAttribute("update", "Contact updated !");
         RequestDispatcher dispatcher = request.getRequestDispatcher("/successUpdate.jsp");
 		dispatcher.forward(request, response);

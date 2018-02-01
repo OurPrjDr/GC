@@ -89,11 +89,11 @@ public class DaoContact implements IDaoContact {
 		}
 	}
 
-	public Set<Contact> searchContact(String firstName, String lastName, String email, Address address, Set<PhoneNumber> phones, Set<ContactGroup> groups, 
- 			String numSiret, Account acc) {
+	public Set<Contact> searchContact(String firstName, String lastName, String email, String numSiret) {
 		 Session session = HibernateUtil.getSessionFactory().openSession();
-
-         StringBuffer sb = new StringBuffer(128);
+		 System.out.println("@@@@@@"+numSiret);
+		 
+         StringBuffer sb = new StringBuffer();
          Set<Contact> setC = new HashSet<Contact>();
          
          long nsiret = -1;
@@ -101,16 +101,20 @@ public class DaoContact implements IDaoContact {
          if ((numSiret != null) && (!numSiret.equals(""))) {
              try {
                  nsiret = Long.parseLong(numSiret);
+                 
              } catch (Exception e) {
                  nsiret = 0;
              }
          }
 
          if (nsiret > -1) {
-             sb.append("select c from Entreprise as c inner join PhoneNumber phn");
-             sb.append(" where c.numSiret like '%" + numSiret + "%'");
-         } else {
-             sb.append("select c from Contact as c, PhoneNumber as phn");
+        	 System.out.println("IIIIIIIIIIIIIIIIIIIIIII"+nsiret);
+             sb.append("select c from Entreprise as c ");
+             sb.append(" where c.numSiret like '%" + nsiret + "%'");
+         } 
+         
+         if  (firstName != null && firstName.length() > 0) {
+             sb.append("select c from Contact as c");
              if (firstName != null && firstName.length() > 0) {
                  sb.append(" where c.firstName like '%" + firstName + "%'");
              } else {
@@ -131,35 +135,9 @@ public class DaoContact implements IDaoContact {
              sb.append( "and c.email like '%'");
          }
 
-         if (address!= null) {
-             if (address.getCity().length()>0) {
-                 sb.append(" and c.address.city like '%" + address.getCity() + "%'");
-             } else {
-                 sb.append(" and c.address.city like '%'");
-             }
-             
-             if (address.getCountry().length()>0) {
-                 sb.append(" and c.address.country like '%" + address.getCountry() + "%'");
-             } else {
-                 sb.append(" and c.address.country like '%'");
-             }
-             
-             if (address.getStreet().length()>0) {
-                 sb.append(" and c.address.street like '%" + address.getStreet() + "%'");
-             } else {
-                 sb.append(" and c.address.street like '%'");
-             }
-             
-             if (address.getZip().length()>0) {
-                 sb.append(" and c.address.zip like '%" + address.getZip() + "%'");
-             } else {
-                 sb.append(" and c.address.zip like '%'");
-             }
-         }
-
-         // Rajouter les tels
-         // Rajouter les groupes
          
+
+        
          session.beginTransaction();
          
          List<Contact> l = session.createQuery(sb.toString()).list();

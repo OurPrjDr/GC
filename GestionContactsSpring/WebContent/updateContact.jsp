@@ -85,7 +85,7 @@
     		<legend>Address</legend>
 			Street: <input  class="form-control"  type="text" name="rue" value=<%=contact.getAddress().getStreet() %> ><br /> 
 			City: <input  class="form-control"  type="text" name="ville" value=<%=contact.getAddress().getCity() %> ><br /> 
-			Zip: <input  class="form-control"  type="text" name="code" value=<%=contact.getAddress().getZip() %> ><br /> 
+			Zip: <input  class="form-control"  type="number" name="code" value=<%=contact.getAddress().getZip() %> ><br /> 
 			
 			Country: <input  class="form-control"  type="text" name="pays" value=<%=contact.getAddress().getCountry() %> ><br /> 
 			</fieldset>

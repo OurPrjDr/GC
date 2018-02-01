@@ -50,17 +50,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     ContactService contactService = (ContactService) context.getBean("contactService");
 	Set<Contact> contactList = contactService.getAllContacts(); 
 	
-    EntrepriseService entrepriseService = (EntrepriseService) context.getBean("entrepriseService");;
-	Set<Entreprise> entrepriseList = entrepriseService.getAllEntreprises();
+    //EntrepriseService entrepriseService = (EntrepriseService) context.getBean("entrepriseService");;
+	//Set<Entreprise> entrepriseList = entrepriseService.getAllEntreprises();
 	
 	Iterator it = null;
-	String e = "false";
-	if(entrepriseList.size()!=0){
-		it = entrepriseList.iterator();
-		e = "true";
-	}else{
+	//Iterator ite = null;
+	//String e = "false";
+	//String cc = "false";
+	//if(entrepriseList.size()!=0){
+		//ite = entrepriseList.iterator();
+		//e = "true";
+	//}
+	//if(contactList.size()!=0){
 		it = contactList.iterator();
-	}
+		
+	//}
 	
 	
 	
@@ -84,12 +88,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        
        
 	   <%  while(it.hasNext()){
+		   String e = "false";
 		   Contact c = null;
-		   if(e.equals("true")){
-			   c = (Entreprise)it.next();
-		   }else{
-			 c = (Contact)it.next();
-			 }%>
+		   c = (Contact)it.next();;
+		   if((c instanceof Entreprise))
+           		 e="true";
+           
+			 %>
 	         <tr> 
 	          <td><%=c.getIdContact() %></td>
 	          <td><%=c.getFirstName() %></td>

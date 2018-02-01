@@ -48,10 +48,9 @@ public class ContactService implements IContactService {
 		}
 	}
 	
-	public Set<Contact> searchContact(String firstName, String lastName, String email, Address address, Set<PhoneNumber> phones, Set<ContactGroup> groups, 
- 			String numSiret, Account acc){
+	public Set<Contact> searchContact(String firstName, String lastName, String email,  String numSiret){
 		try{
-			return dao.searchContact(firstName, lastName, email, address, phones, groups, numSiret, acc);
+			return dao.searchContact(firstName, lastName, email, numSiret);
 			
 		} catch (Exception e){
 			return null;
