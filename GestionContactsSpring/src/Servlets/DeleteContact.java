@@ -2,6 +2,7 @@ package Servlets;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -56,7 +57,8 @@ public class DeleteContact extends HttpServlet {
 
 	        contactService.deleteContact(idContact);
 	        	       
-	        response.sendRedirect("accueil.jsp");
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("/successDelete.jsp");
+			dispatcher.forward(request, response);
 	            
 	     
 		} catch (Exception e) {

@@ -108,10 +108,12 @@
 			    </fieldset>
 	    
 			    <input class="btn btn-primary" type="submit" value="Rechercher le contact"/>     
-			    <input class="btn btn-secondary" type="reset" value="Annuler"/> 
-			</div>
-                  
+			</div>   
+			       
       </form>
+      <div class="container">
+      	 <a href="accueil.jsp"><input  class="btn btn-primary" type="button" value="Annuler"/></a>  
+      </div>   	 		
    </body>
 </html>
 

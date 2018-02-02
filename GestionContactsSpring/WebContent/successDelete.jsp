@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>Update </title>
+    <title>Delete </title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-				<h1>Update réussie</h1><br/>
+				<h1>Delete réussie</h1><br/>
 				<h1>Redirection vers l'accueil</h1>
 	
   </body>

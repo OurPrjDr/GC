@@ -114,6 +114,7 @@ public class SearchContact extends HttpServlet {
          
           if (res == null || res.size() == 0) {
               out.println("<h3 class='text-on-pannel text-primary'>Aucun resultat.</h3>");
+              out.println("<a  href='accueil.jsp'><input class='btn btn-primary' type='button' value='Accueil'/></a>");
           } else {
               out.println("<h3 class='text-on-pannel text-primary'><strong class='text-uppercase'> Resultat de la recherche </strong></h3>");
               out.println("<table class='table table-hover'>");
@@ -150,6 +151,7 @@ public class SearchContact extends HttpServlet {
                            + "</tr>");
               }
               out.println("</table>");
+              out.println("<a  href='accueil.jsp'><input class='btn btn-primary' type='button' value='Accueil'/></a>");
           }
           out.println("</body></html>"); 
     }

@@ -131,7 +131,9 @@
 		</div>
          </form>
          </div>
-         <a href="accueil.jsp"><input  class="btn btn-secondary" type="button" value="Annuler"/></a>
+          <div class="container">
+         <a href="accueil.jsp"><input  class="btn btn-primary" type="button" value="Annuler"/></a>
+         </div>
 		<!--  <form action="NewContactGroup" method="post" > 
 			  </form>
 		-->
